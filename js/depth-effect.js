@@ -180,7 +180,6 @@
         '.cyber-card',
         '.cyber-stat-card',
         '.cyber-terminal-box',
-        '.hero-3d-card',
         '.contact-direct-card',
         '.award-card',
         '.interest-card',
