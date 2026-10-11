@@ -232,7 +232,7 @@ body::before {
   pointer-events: none;
   z-index: 0;
   opacity: 0.55;
-  animation: orbFloat 18s ease-in-out infinite alternate;
+  animation: orbFloat 45s ease-in-out infinite alternate;
 }
 
 .cyber-orb-1 {

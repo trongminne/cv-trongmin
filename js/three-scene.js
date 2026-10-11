@@ -45,11 +45,12 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // Particle Cloud System
+    // Particle Cloud System (Calm, ethereal nebulae drift)
     const particleCount = window.innerWidth < 768 ? 140 : 280;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const velocities = [];
+    const baseVelocities = [];
 
     const range = 360;
     for (let i = 0; i < particleCount; i++) {
@@ -57,11 +58,12 @@
       positions[i * 3 + 1] = (Math.random() - 0.5) * range;
       positions[i * 3 + 2] = (Math.random() - 0.5) * range;
 
-      velocities.push({
-        x: (Math.random() - 0.5) * 0.28,
-        y: (Math.random() - 0.5) * 0.28,
-        z: (Math.random() - 0.5) * 0.28
-      });
+      // Gentle, serene cosmic drift speed (~0.05 vs old 0.28)
+      const bVx = (Math.random() - 0.5) * 0.055;
+      const bVy = (Math.random() - 0.5) * 0.055;
+      const bVz = (Math.random() - 0.5) * 0.045;
+      velocities.push({ x: bVx, y: bVy, z: bVz });
+      baseVelocities.push({ x: bVx, y: bVy, z: bVz });
     }
 
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -142,9 +144,9 @@
       );
 
       mesh.rotationSpeed = {
-        x: (Math.random() - 0.5) * 0.008,
-        y: (Math.random() - 0.5) * 0.012,
-        z: (Math.random() - 0.5) * 0.006
+        x: (Math.random() - 0.5) * 0.0018,
+        y: (Math.random() - 0.5) * 0.0028,
+        z: (Math.random() - 0.5) * 0.0012
       };
 
       polyhedraGroup.add(mesh);
@@ -248,7 +250,7 @@
       if (!e.detail) return;
       const originX = (e.detail.originX || 0) * (range * 0.4);
       const originY = (e.detail.originY || 0) * (range * 0.4);
-      const intensity = Math.min(2.0, e.detail.intensity || 1.0);
+      const intensity = Math.min(1.5, e.detail.intensity || 1.0);
       const posArr = geometry.attributes.position.array;
 
       for (let i = 0; i < particleCount; i++) {
@@ -259,8 +261,8 @@
         const dist = Math.sqrt(dx * dx + dy * dy) || 1;
 
         if (dist < 160) {
-          velocities[i].x += (dx / dist) * intensity * 0.45;
-          velocities[i].y += (dy / dist) * intensity * 0.45;
+          velocities[i].x += (dx / dist) * intensity * 0.07;
+          velocities[i].y += (dy / dist) * intensity * 0.07;
         }
       }
     }, { passive: true });
@@ -303,26 +305,40 @@
 
       const delta = bgClock.getDelta();
 
-      // Smooth mouse lerping
-      mouseX += (targetMouseX - mouseX) * 0.05;
-      mouseY += (targetMouseY - mouseY) * 0.05;
+      // Smooth mouse lerping - calm and cinematic
+      mouseX += (targetMouseX - mouseX) * 0.025;
+      mouseY += (targetMouseY - mouseY) * 0.025;
 
       // Camera parallax with scroll drift
-      camera.position.x = mouseX * 22;
-      camera.position.y = -mouseY * 18 - (scrollY * 0.06);
-      camera.lookAt(0, -scrollY * 0.06, 0);
+      camera.position.x = mouseX * 12;
+      camera.position.y = -mouseY * 10 - (scrollY * 0.04);
+      camera.lookAt(0, -scrollY * 0.04, 0);
 
-      // Animate particles
+      // Animate particles with smooth velocity damping
       const posArr = geometry.attributes.position.array;
       for (let i = 0; i < particleCount; i++) {
+        // Smoothly decay velocity back to base drift
+        velocities[i].x += (baseVelocities[i].x - velocities[i].x) * 0.025;
+        velocities[i].y += (baseVelocities[i].y - velocities[i].y) * 0.025;
+        velocities[i].z += (baseVelocities[i].z - velocities[i].z) * 0.025;
+
         posArr[i * 3] += velocities[i].x;
         posArr[i * 3 + 1] += velocities[i].y;
         posArr[i * 3 + 2] += velocities[i].z;
 
         // Boundary bounce
-        if (Math.abs(posArr[i * 3]) > range * 0.8) velocities[i].x *= -1;
-        if (Math.abs(posArr[i * 3 + 1]) > range * 0.5) velocities[i].y *= -1;
-        if (Math.abs(posArr[i * 3 + 2]) > range * 0.5) velocities[i].z *= -1;
+        if (Math.abs(posArr[i * 3]) > range * 0.8) {
+          velocities[i].x *= -1;
+          baseVelocities[i].x *= -1;
+        }
+        if (Math.abs(posArr[i * 3 + 1]) > range * 0.5) {
+          velocities[i].y *= -1;
+          baseVelocities[i].y *= -1;
+        }
+        if (Math.abs(posArr[i * 3 + 2]) > range * 0.5) {
+          velocities[i].z *= -1;
+          baseVelocities[i].z *= -1;
+        }
       }
       geometry.attributes.position.needsUpdate = true;
 
@@ -748,14 +764,14 @@
         dragVelocity.x *= 0.94;
         dragVelocity.y *= 0.94;
 
-        holoGroup.rotation.y += dragVelocity.x + (0.012 * rotationSpeedMultiplier);
-        holoGroup.rotation.x += dragVelocity.y + (0.006 * rotationSpeedMultiplier);
+        holoGroup.rotation.y += dragVelocity.x + (0.005 * rotationSpeedMultiplier);
+        holoGroup.rotation.x += dragVelocity.y + (0.0025 * rotationSpeedMultiplier);
       }
 
       // Rings differential rotation
-      ring1.rotation.z += 0.015 * rotationSpeedMultiplier;
-      ring2.rotation.x -= 0.012 * rotationSpeedMultiplier;
-      dustPoints.rotation.y -= 0.008 * rotationSpeedMultiplier;
+      ring1.rotation.z += 0.006 * rotationSpeedMultiplier;
+      ring2.rotation.x -= 0.005 * rotationSpeedMultiplier;
+      dustPoints.rotation.y -= 0.003 * rotationSpeedMultiplier;
 
       // Subtle breathing pulse
       const breathe = Math.sin(now * 0.002) * 0.035;
