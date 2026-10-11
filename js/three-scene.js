@@ -236,6 +236,35 @@
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     });
 
+    // Centrifugal & Gyroscope Depth Hook (Vương Giả Vinh Diệu & iPhone Spatial Depth)
+    window.addEventListener('spatialCentrifugalTilt', (e) => {
+      if (e.detail) {
+        targetMouseX = e.detail.x * 1.5;
+        targetMouseY = e.detail.y * 1.5;
+      }
+    }, { passive: true });
+
+    window.addEventListener('centrifugalForcePulse', (e) => {
+      if (!e.detail) return;
+      const originX = (e.detail.originX || 0) * (range * 0.4);
+      const originY = (e.detail.originY || 0) * (range * 0.4);
+      const intensity = Math.min(2.0, e.detail.intensity || 1.0);
+      const posArr = geometry.attributes.position.array;
+
+      for (let i = 0; i < particleCount; i++) {
+        const px = posArr[i * 3];
+        const py = posArr[i * 3 + 1];
+        const dx = px - originX;
+        const dy = py - originY;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+
+        if (dist < 160) {
+          velocities[i].x += (dx / dist) * intensity * 0.45;
+          velocities[i].y += (dy / dist) * intensity * 0.45;
+        }
+      }
+    }, { passive: true });
+
     // Theme update hook for background scene
     window.addEventListener('themeChanged', (e) => {
       const isLight = e.detail && e.detail.theme === 'light-blue';

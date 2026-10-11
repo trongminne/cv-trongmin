@@ -265,6 +265,73 @@ body::before {
   0% { transform: translate(0, 0) scale(1); }
   50% { transform: translate(35px, -25px) scale(1.08); }
   100% { transform: translate(-25px, 35px) scale(0.96); }
+/* ==========================================================================
+   SPATIAL DEPTH EFFECT (IPHONE) & CENTRIFUGAL TILT (VƯƠNG GIẢ VINH DIỆU)
+   ========================================================================== */
+.spatial-depth-card {
+  transform-style: preserve-3d !important;
+  perspective: 1100px !important;
+  will-change: transform;
+  position: relative;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.depth-specular-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 15;
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: opacity 0.2s ease;
+}
+
+/* Multi-Plane Stereoscopic Z-Depth Layers */
+.spatial-depth-card .depth-layer-foreground,
+.spatial-depth-card .contact-card-icon,
+.spatial-depth-card .cyber-stat-icon,
+.spatial-depth-card .award-icon,
+.spatial-depth-card .interest-icon {
+  transform: translateZ(44px) !important;
+  transform-style: preserve-3d !important;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.spatial-depth-card .depth-layer-midground,
+.spatial-depth-card .card-title,
+.spatial-depth-card .cyber-stat-value,
+.spatial-depth-card .award-title,
+.spatial-depth-card .interest-title {
+  transform: translateZ(26px) !important;
+  transform-style: preserve-3d !important;
+}
+
+.spatial-depth-card .depth-layer-pop,
+.spatial-depth-card .cyber-date-badge,
+.spatial-depth-card .cyber-tag-list,
+.spatial-depth-card .contact-btn-group,
+.spatial-depth-card .award-badge-top {
+  transform: translateZ(36px) !important;
+  transform-style: preserve-3d !important;
+}
+
+/* Avatar 3D Multi-Layer Centrifugal Depth */
+.avatar-container.spatial-depth-card {
+  transform-style: preserve-3d !important;
+  perspective: 1000px !important;
+}
+
+.avatar-container.spatial-depth-card .avatar-img {
+  transform: translateZ(28px) scale(1.04) !important;
+  transform-style: preserve-3d !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@media (hover: hover) {
+  .spatial-depth-card:hover {
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.38) !important;
+  }
 }
 
 /* Typography & Headings */
