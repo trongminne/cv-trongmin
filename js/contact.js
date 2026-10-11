@@ -203,9 +203,14 @@ document.addEventListener('DOMContentLoaded', () => {
         hasError = true;
       }
 
+      const currentLang = (window.i18n && typeof window.i18n.getCurrentLanguage === 'function') 
+        ? window.i18n.getCurrentLanguage() 
+        : (localStorage.getItem('cv_lang') || 'vi');
+      const isEn = currentLang === 'en';
+
       if (hasError) {
         CyberAudio.playBeep(320, 'sawtooth', 0.15);
-        showCyberToast("Vui lòng điền đầy đủ và chính xác thông tin!", "✕");
+        showCyberToast(isEn ? "Please fill out all required fields correctly!" : "Vui lòng điền đầy đủ và chính xác thông tin!", "✕");
         return;
       }
 
@@ -213,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const submitBtn = document.getElementById('submitContactBtn');
       const originalBtnHtml = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ĐANG TRUYỀN DỮ LIỆU...`;
+      submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${isEn ? "TRANSMITTING DATA..." : "ĐANG TRUYỀN DỮ LIỆU..."}`;
       CyberAudio.playBeep(600, 'square', 0.1);
 
       // Simulate transmission process
@@ -233,8 +238,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof Swal !== 'undefined' || typeof swal !== 'undefined') {
           const swalInstance = (typeof Swal !== 'undefined') ? Swal : swal;
           swalInstance.fire({
-            title: "TRUYỀN TIN THÀNH CÔNG!",
-            html: `
+            title: isEn ? "TRANSMISSION SUCCESSFUL!" : "TRUYỀN TIN THÀNH CÔNG!",
+            html: isEn ? `
+              <div style="text-align: left; font-family: var(--font-mono, monospace); font-size: 0.9rem; line-height: 1.6; color: #cbd5e1;">
+                <p style="color: #38bdf8; margin-bottom: 8px;"><b>> TRANSMISSION RECEIVED</b></p>
+                <p>Thank you <b>${escapeHtml(name)}</b> for reaching out regarding <b>[${escapeHtml(topicValue)}]</b>.</p>
+                <p style="margin-top: 8px; color: #93c5fd;">Trong Min will respond to you via <u>${escapeHtml(email)}</u> as soon as possible!</p>
+              </div>
+            ` : `
               <div style="text-align: left; font-family: var(--font-mono, monospace); font-size: 0.9rem; line-height: 1.6; color: #cbd5e1;">
                 <p style="color: #38bdf8; margin-bottom: 8px;"><b>> TRANSMISSION RECEIVED</b></p>
                 <p>Cảm ơn <b>${escapeHtml(name)}</b> đã gửi liên hệ về chủ đề <b>[${escapeHtml(topicValue)}]</b>.</p>
@@ -245,13 +256,13 @@ document.addEventListener('DOMContentLoaded', () => {
             background: "#0f172a",
             color: "#f8fafc",
             confirmButtonColor: "#2563eb",
-            confirmButtonText: "HOÀN TẤT",
+            confirmButtonText: isEn ? "ACKNOWLEDGE" : "HOÀN TẤT",
             customClass: {
               popup: 'cyber-swal-popup'
             }
           });
         } else {
-          showCyberToast("Tin nhắn đã được gửi thành công!", "✓");
+          showCyberToast(isEn ? "Message transmitted successfully!" : "Tin nhắn đã được gửi thành công!", "✓");
         }
       }, 1200);
     });

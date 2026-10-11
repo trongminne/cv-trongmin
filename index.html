@@ -58,6 +58,17 @@
             <i class="fas fa-terminal mr-2"></i>TRỌNG MIN
         </a>
 
+        <!-- Mobile Nav Actions (Lang switch + Hamburger) -->
+        <div class="d-flex align-items-center d-lg-none">
+            <button class="cyber-lang-mobile-btn mr-2" type="button" title="Chuyển đổi ngôn ngữ / Switch Language" aria-label="Switch Language">
+                <span class="current-lang-text">VN</span>
+            </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
         <!-- Desktop Sidebar Header (No nested anchor tags) -->
         <div class="sidebar-header d-none d-lg-block text-center w-100 mb-2">
             <div class="avatar-container" title="Trọng Min">
@@ -67,59 +78,54 @@
             <div class="sidebar-profile-sub">&lt;dev.trongmin/&gt;</div>
             <div class="mt-2">
                 <span class="cyber-status-badge">
-                    <span class="status-dot-pulse"></span> Sẵn sàng nhận dự án
+                    <span class="status-dot-pulse"></span> <span data-i18n="nav_status">Sẵn sàng nhận dự án</span>
                 </span>
             </div>
         </div>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars"></i>
-        </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#about">
                         <span class="nav-link-code">[01]</span>
-                        <span>Thông tin cá nhân</span>
+                        <span data-i18n="nav_about">Thông tin cá nhân</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#experience">
                         <span class="nav-link-code">[02]</span>
-                        <span>Kinh nghiệm</span>
+                        <span data-i18n="nav_experience">Kinh nghiệm</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#education">
                         <span class="nav-link-code">[03]</span>
-                        <span>Giáo dục</span>
+                        <span data-i18n="nav_education">Giáo dục</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#skills">
                         <span class="nav-link-code">[04]</span>
-                        <span>Kỹ năng</span>
+                        <span data-i18n="nav_skills">Kỹ năng</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#interests">
                         <span class="nav-link-code">[05]</span>
-                        <span>Sở thích</span>
+                        <span data-i18n="nav_interests">Sở thích</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#awards">
                         <span class="nav-link-code">[06]</span>
-                        <span>Giải thưởng</span>
+                        <span data-i18n="nav_awards">Giải thưởng</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#contact">
                         <span class="nav-link-code" style="color: var(--accent-blue);">[07]</span>
-                        <span>Liên hệ & Gửi tin</span>
-                        <span class="nav-badge-hot">Mới</span>
+                        <span data-i18n="nav_contact">Liên hệ & Gửi tin</span>
+                        <span class="nav-badge-hot" data-i18n="nav_badge_new">Mới</span>
                     </a>
                 </li>
             </ul>
@@ -127,19 +133,31 @@
             <!-- Sidebar Bottom Panel: Clean & Spacious -->
             <div class="sidebar-bottom-panel d-none d-lg-flex">
                 <div class="sidebar-utils-grid">
-                    <button class="cyber-util-btn" onclick="showVoiceGuideModal()" title="Xem hướng dẫn giọng nói">
+                    <button class="cyber-util-btn" onclick="showVoiceGuideModal()" title="Xem hướng dẫn giọng nói" data-i18n-title="nav_voice_title">
                         <i class="fas fa-microphone mr-1" style="color: var(--accent-blue);"></i>
-                        <span>Giọng nói</span>
+                        <span data-i18n="nav_voice">Giọng nói</span>
                     </button>
-                    <button class="cyber-util-btn" onclick="openShortcutModal()" title="Xem phím tắt nhanh">
+                    <button class="cyber-util-btn" onclick="openShortcutModal()" title="Xem phím tắt nhanh" data-i18n-title="nav_shortcuts_title">
                         <i class="fas fa-keyboard mr-1" style="color: var(--accent-blue-light);"></i>
-                        <span>Phím tắt</span>
+                        <span data-i18n="nav_shortcuts">Phím tắt</span>
                     </button>
                 </div>
 
-                <button class="cyber-util-btn theme-toggle-btn w-100 mt-2" title="Chuyển tone Xanh Sáng Tươi / Xanh Sáng Neon">
+                <!-- Cyber Bilingual Language Switcher -->
+                <div class="sidebar-lang-container mt-2">
+                    <div class="cyber-lang-toggle" role="group" aria-label="Language selection">
+                        <button type="button" class="lang-opt-btn active" data-lang="vi" title="Chuyển sang Tiếng Việt">
+                            <span class="lang-code">VN</span>
+                        </button>
+                        <button type="button" class="lang-opt-btn" data-lang="en" title="Switch to English">
+                            <span class="lang-code">EN</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button class="cyber-util-btn theme-toggle-btn w-100 mt-2" title="Chuyển tone Xanh Sáng Tươi / Xanh Sáng Neon" data-i18n-title="theme_btn_title">
                     <i class="fas fa-sun mr-1"></i>
-                    <span>Tone Xanh Sáng</span>
+                    <span data-i18n="theme_btn_light">Tone Xanh Sáng</span>
                 </button>
 
                 <div class="social-icons-bar justify-content-center mt-3">
@@ -166,10 +184,10 @@
                 <div class="hero-flex-grid">
                     <!-- Left Column: Personal Intro -->
                     <div class="hero-intro-col">
-                        <div class="cyber-section-tag">SYS_INIT // PERSONAL_PROFILE.LOG</div>
+                        <div class="cyber-section-tag" data-i18n="hero_tag">SYS_INIT // PERSONAL_PROFILE.LOG</div>
                         <div class="hero-greeting">
                             <span>&lt;status: online/&gt;</span>
-                            <span>👋 Xin chào, tôi là</span>
+                            <span data-i18n="hero_greeting">👋 Xin chào, tôi là</span>
                         </div>
 
                         <h1 class="hero-title">
@@ -177,11 +195,11 @@
                         </h1>
 
                         <div class="hero-subtitle">
-                            <span>Kỹ Sư Phần Mềm</span>
+                            <span data-i18n="hero_role1">Kỹ Sư Phần Mềm</span>
                             <span class="hero-subtitle-dot">✦</span>
-                            <span>ASP.NET Core & Web Developer</span>
+                            <span data-i18n="hero_role2">ASP.NET Core & Web Developer</span>
                             <span class="hero-subtitle-dot">✦</span>
-                            <span>AI Solutions</span>
+                            <span data-i18n="hero_role3">AI Solutions</span>
                         </div>
 
                         <!-- Social Icons Bar (Prominent & Large) -->
@@ -206,7 +224,7 @@
                                 </div>
                                 <div>bash - trongmin@dev-box: ~/manifesto</div>
                             </div>
-                            <p class="terminal-bio-text">
+                            <p class="terminal-bio-text" data-i18n="hero_bio">
                                 "Sự hài lòng của bạn về sản phẩm là mục tiêu của tôi! Tôi đam mê xây dựng các giải pháp web hiệu
                                 năng cao, tích hợp trí tuệ nhân tạo (AI) và kiến trúc ứng dụng an toàn, tin cậy để giải quyết
                                 các bài toán thực tiễn."
@@ -221,22 +239,22 @@
                     <div class="cyber-stat-card">
                         <div class="cyber-stat-icon"><i class="fas fa-graduation-cap"></i></div>
                         <div class="cyber-stat-value">3.45 / 4.0</div>
-                        <div class="cyber-stat-label">ĐH Sao Đỏ (GPA Giỏi)</div>
+                        <div class="cyber-stat-label" data-i18n="stat_1_label">ĐH Sao Đỏ (GPA Giỏi)</div>
                     </div>
                     <div class="cyber-stat-card">
                         <div class="cyber-stat-icon"><i class="fas fa-brain"></i></div>
                         <div class="cyber-stat-value">AI Integration</div>
-                        <div class="cyber-stat-label">Text-to-Image & Chatbot</div>
+                        <div class="cyber-stat-label" data-i18n="stat_2_label">Text-to-Image & Chatbot</div>
                     </div>
                     <div class="cyber-stat-card">
                         <div class="cyber-stat-icon"><i class="fas fa-shield-alt"></i></div>
                         <div class="cyber-stat-value">ASP.NET Core</div>
-                        <div class="cyber-stat-label">Kiến trúc Web & Bảo mật</div>
+                        <div class="cyber-stat-label" data-i18n="stat_3_label">Kiến trúc Web & Bảo mật</div>
                     </div>
                     <div class="cyber-stat-card">
                         <div class="cyber-stat-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="cyber-stat-value">Việt Nam</div>
-                        <div class="cyber-stat-label">Hà Nội / Hải Dương</div>
+                        <div class="cyber-stat-value" data-i18n="stat_4_val">Việt Nam</div>
+                        <div class="cyber-stat-label" data-i18n="stat_4_label">Hà Nội / Hải Dương</div>
                     </div>
                 </div>
 
@@ -244,15 +262,15 @@
                 <div class="hero-actions">
                     <a class="btn-cyber-primary js-scroll-trigger" href="#contact">
                         <i class="fas fa-paper-plane"></i>
-                        <span>LIÊN HỆ & GỬI TIN NHẮN</span>
+                        <span data-i18n="btn_contact">LIÊN HỆ & GỬI TIN NHẮN</span>
                     </a>
                     <a class="btn-cyber-secondary js-scroll-trigger" href="#experience">
                         <i class="fas fa-briefcase"></i>
-                        <span>XEM KINH NGHIỆM</span>
+                        <span data-i18n="btn_experience">XEM KINH NGHIỆM</span>
                     </a>
                     <button class="btn-cyber-secondary copy-btn" data-copy-text="ae12cnamcao@gmail.com">
                         <i class="fas fa-copy"></i>
-                        <span>SAO CHÉP EMAIL</span>
+                        <span data-i18n="btn_copy_email">SAO CHÉP EMAIL</span>
                     </button>
                 </div>
             </div>
@@ -263,8 +281,8 @@
         <!-- SECTION 2: EXPERIENCE (KINH NGHIỆM) -->
         <section class="resume-section" id="experience">
             <div class="resume-section-content">
-                <div class="cyber-section-tag">EXEC_PATH // WORK_EXPERIENCE.DAT</div>
-                <h2 class="cyber-section-title">Kinh nghiệm & Dự án thực tế</h2>
+                <div class="cyber-section-tag" data-i18n="exp_tag">EXEC_PATH // WORK_EXPERIENCE.DAT</div>
+                <h2 class="cyber-section-title" data-i18n="exp_title">Kinh nghiệm & Dự án thực tế</h2>
 
                 <div class="cyber-timeline">
                     <!-- Experience 1 -->
@@ -272,13 +290,11 @@
                         <div class="timeline-node"></div>
                         <div class="cyber-card">
                             <div class="card-header-flex">
-                                <h3 class="card-title">Triển khai Website ứng dụng Trí Tuệ Nhân Tạo (AI)</h3>
-                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> 2024 - Hiện
-                                    tại</span>
+                                <h3 class="card-title" data-i18n="exp_1_title">Triển khai Website ứng dụng Trí Tuệ Nhân Tạo (AI)</h3>
+                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> <span data-i18n="exp_1_date">2024 - Hiện tại</span></span>
                             </div>
-                            <div class="card-role-sub"><i class="fas fa-code mr-1"></i> Dự án Trọng điểm: Tạo ảnh nghệ
-                                thuật từ văn bản (Text-to-Image)</div>
-                            <p class="card-desc">
+                            <div class="card-role-sub"><i class="fas fa-code mr-1"></i> <span data-i18n="exp_1_role">Dự án Trọng điểm: Tạo ảnh nghệ thuật từ văn bản (Text-to-Image)</span></div>
+                            <p class="card-desc" data-i18n="exp_1_desc">
                                 Nghiên cứu, phát triển và triển khai toàn diện giải pháp website áp dụng trí tuệ nhân
                                 tạo (AI) cho phép người dùng nhập mô tả văn bản để tạo ra hình ảnh chất lượng cao. Ứng
                                 dụng kiến thức chuyên sâu về xử lý ngôn ngữ tự nhiên (NLP) và thị giác máy tính
@@ -286,7 +302,7 @@
                                 trội.
                             </p>
                             <div class="cyber-tag-list">
-                                <span class="cyber-tag">Trí tuệ nhân tạo (AI)</span>
+                                <span class="cyber-tag" data-i18n="tag_ai">Trí tuệ nhân tạo (AI)</span>
                                 <span class="cyber-tag">Text-to-Image</span>
                                 <span class="cyber-tag">Python</span>
                                 <span class="cyber-tag">Computer Vision</span>
@@ -301,13 +317,11 @@
                         <div class="timeline-node"></div>
                         <div class="cyber-card">
                             <div class="card-header-flex">
-                                <h3 class="card-title">Lập trình Website & Kiến trúc Bảo mật Nâng cao</h3>
-                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> Tháng 11 -
-                                    2023</span>
+                                <h3 class="card-title" data-i18n="exp_2_title">Lập trình Website & Kiến trúc Bảo mật Nâng cao</h3>
+                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> <span data-i18n="exp_2_date">Tháng 11 - 2023</span></span>
                             </div>
-                            <div class="card-role-sub"><i class="fas fa-shield-alt mr-1"></i> ASP.NET & ASP.NET Core MVC
-                            </div>
-                            <p class="card-desc">
+                            <div class="card-role-sub"><i class="fas fa-shield-alt mr-1"></i> <span data-i18n="exp_2_role">ASP.NET & ASP.NET Core MVC</span></div>
+                            <p class="card-desc" data-i18n="exp_2_desc">
                                 Có kinh nghiệm thực chiến với hệ sinh thái ASP.NET, ASP.NET Core MVC; áp dụng các cơ chế
                                 xác thực, phân quyền chặt chẽ, tối ưu hóa truy vấn cơ sở dữ liệu và triển khai các giải
                                 pháp bảo mật nâng cao nhằm ngăn ngừa các lỗ hổng web phổ biến (CSRF, XSS, SQL
@@ -328,12 +342,11 @@
                         <div class="timeline-node"></div>
                         <div class="cyber-card">
                             <div class="card-header-flex">
-                                <h3 class="card-title">Phát triển ứng dụng Desktop tích hợp Web</h3>
-                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> Tháng 05 -
-                                    2023</span>
+                                <h3 class="card-title" data-i18n="exp_3_title">Phát triển ứng dụng Desktop tích hợp Web</h3>
+                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> <span data-i18n="exp_3_date">Tháng 05 - 2023</span></span>
                             </div>
-                            <div class="card-role-sub"><i class="fas fa-desktop mr-1"></i> WPF & Windows Forms</div>
-                            <p class="card-desc">
+                            <div class="card-role-sub"><i class="fas fa-desktop mr-1"></i> <span data-i18n="exp_3_role">WPF & Windows Forms</span></div>
+                            <p class="card-desc" data-i18n="exp_3_desc">
                                 Thiết kế và lập trình phần mềm Desktop sử dụng công nghệ WPF và Windows Forms. Tích hợp
                                 tương tác đồng bộ dữ liệu hai chiều với các trang web và API ASP.NET, tạo ra trải nghiệm
                                 người dùng liền mạch và giải quyết hiệu quả nhu cầu quản lý doanh nghiệp.
@@ -355,8 +368,8 @@
         <!-- SECTION 3: EDUCATION (GIÁO DỤC) -->
         <section class="resume-section" id="education">
             <div class="resume-section-content">
-                <div class="cyber-section-tag">ACADEMIC // EDUCATION_HISTORY.SYS</div>
-                <h2 class="cyber-section-title">Học vấn & Đào tạo</h2>
+                <div class="cyber-section-tag" data-i18n="edu_tag">ACADEMIC // EDUCATION_HISTORY.SYS</div>
+                <h2 class="cyber-section-title" data-i18n="edu_title">Học vấn & Đào tạo</h2>
 
                 <div class="cyber-timeline">
                     <!-- Education 1 -->
@@ -364,20 +377,18 @@
                         <div class="timeline-node"></div>
                         <div class="cyber-card">
                             <div class="card-header-flex">
-                                <h3 class="card-title">Trường Đại học Sao Đỏ</h3>
-                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> 2023 - Hiện
-                                    tại</span>
+                                <h3 class="card-title" data-i18n="edu_1_school">Trường Đại học Sao Đỏ</h3>
+                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> <span data-i18n="edu_1_date">2023 - Hiện tại</span></span>
                             </div>
-                            <div class="card-role-sub"><i class="fas fa-user-graduate mr-1"></i> Chuyên ngành: Kỹ sư
-                                phần mềm (Software Engineering)</div>
-                            <p class="card-desc">
+                            <div class="card-role-sub"><i class="fas fa-user-graduate mr-1"></i> <span data-i18n="edu_1_major">Chuyên ngành: Kỹ sư phần mềm (Software Engineering)</span></div>
+                            <p class="card-desc" data-i18n="edu_1_desc">
                                 Chuyên sâu về nghiên cứu và phát triển phần mềm, kiến trúc website hiện đại, cơ sở dữ
                                 liệu quan hệ, và ứng dụng trí tuệ nhân tạo. Tích cực tham gia các phong trào nghiên cứu
                                 khoa học cấp trường.
                             </p>
                             <div class="d-flex justify-content-between align-items-center mb-1">
                                 <span
-                                    style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-blue);">Điểm
+                                    style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-blue);" data-i18n="edu_1_gpa">Điểm
                                     TBTL (GPA): <b>3.45 / 4.0</b> (Xếp loại Giỏi)</span>
                                 <span
                                     style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-blue-light);">86.25%</span>
@@ -393,13 +404,11 @@
                         <div class="timeline-node"></div>
                         <div class="cyber-card">
                             <div class="card-header-flex">
-                                <h3 class="card-title">Trường THPT Nam Cao</h3>
-                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> Tốt nghiệp: Tháng 06
-                                    - 2020</span>
+                                <h3 class="card-title" data-i18n="edu_2_school">Trường THPT Nam Cao</h3>
+                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> <span data-i18n="edu_2_date">Tốt nghiệp: Tháng 06 - 2020</span></span>
                             </div>
-                            <div class="card-role-sub"><i class="fas fa-square-root-alt mr-1"></i> Khối Khoa học Tự
-                                nhiên & Học tốt Toán</div>
-                            <p class="card-desc">
+                            <div class="card-role-sub"><i class="fas fa-square-root-alt mr-1"></i> <span data-i18n="edu_2_major">Khối Khoa học Tự nhiên & Học tốt Toán</span></div>
+                            <p class="card-desc" data-i18n="edu_2_desc">
                                 Nền tảng tư duy toán học và giải quyết vấn đề logic vững chắc. Điểm trung bình các môn
                                 học tự nhiên đạt mức xuất sắc (~ 7.9).
                             </p>
@@ -414,15 +423,15 @@
         <!-- SECTION 4: SKILLS (KỸ NĂNG) -->
         <section class="resume-section" id="skills">
             <div class="resume-section-content">
-                <div class="cyber-section-tag">TECH_STACK // CAPABILITIES_MATRIX</div>
-                <h2 class="cyber-section-title">Kỹ năng chuyên môn</h2>
+                <div class="cyber-section-tag" data-i18n="skills_tag">TECH_STACK // CAPABILITIES_MATRIX</div>
+                <h2 class="cyber-section-title" data-i18n="skills_title">Kỹ năng chuyên môn</h2>
 
                 <div class="skills-bento-grid">
                     <!-- Category 1: Backend & Web Frameworks -->
                     <div class="skill-category-card">
                         <div class="skill-category-title">
                             <i class="fas fa-layer-group" style="color: var(--neon-cyan);"></i>
-                            <span>Backend & Frameworks</span>
+                            <span data-i18n="skills_cat1">Backend & Frameworks</span>
                         </div>
                         <div class="skill-items-grid">
                             <div class="skill-item" title="ASP.NET Core Framework">
@@ -452,7 +461,7 @@
                     <div class="skill-category-card">
                         <div class="skill-category-title">
                             <i class="fas fa-laptop-code" style="color: var(--neon-purple);"></i>
-                            <span>Môi trường & IDE</span>
+                            <span data-i18n="skills_cat2">Môi trường & IDE</span>
                         </div>
                         <div class="skill-items-grid">
                             <div class="skill-item" title="Visual Studio Code">
@@ -470,7 +479,7 @@
                     <div class="skill-category-card">
                         <div class="skill-category-title">
                             <i class="fas fa-code-branch" style="color: var(--neon-green);"></i>
-                            <span>Quản lý mã nguồn & Hỗ trợ</span>
+                            <span data-i18n="skills_cat3">Quản lý mã nguồn & Hỗ trợ</span>
                         </div>
                         <div class="skill-items-grid">
                             <div class="skill-item" title="Git Version Control">
@@ -492,35 +501,35 @@
         <!-- SECTION 5: INTERESTS (SỞ THÍCH) -->
         <section class="resume-section" id="interests">
             <div class="resume-section-content">
-                <div class="cyber-section-tag">LIFESTYLE // INTERESTS_AND_ACTIVITIES</div>
-                <h2 class="cyber-section-title">Sở thích cá nhân</h2>
+                <div class="cyber-section-tag" data-i18n="interests_tag">LIFESTYLE // INTERESTS_AND_ACTIVITIES</div>
+                <h2 class="cyber-section-title" data-i18n="interests_title">Sở thích cá nhân</h2>
 
                 <div class="interests-grid">
                     <div class="interest-card">
                         <div class="interest-icon">🏃</div>
-                        <h3 class="interest-title">Thể dục & Chạy bộ</h3>
-                        <p class="interest-desc">Dành thời gian rèn luyện thể chất ngoài trời, chạy bộ để giải tỏa áp
+                        <h3 class="interest-title" data-i18n="interest_1_title">Thể dục & Chạy bộ</h3>
+                        <p class="interest-desc" data-i18n="interest_1_desc">Dành thời gian rèn luyện thể chất ngoài trời, chạy bộ để giải tỏa áp
                             lực và duy trì năng lượng tích cực cho công việc.</p>
                     </div>
 
                     <div class="interest-card">
                         <div class="interest-icon">⚡</div>
-                        <h3 class="interest-title">Đam mê Công nghệ</h3>
-                        <p class="interest-desc">Luôn theo dõi và tìm hiểu các công nghệ mới, đặc biệt là các mô hình
+                        <h3 class="interest-title" data-i18n="interest_2_title">Đam mê Công nghệ</h3>
+                        <p class="interest-desc" data-i18n="interest_2_desc">Luôn theo dõi và tìm hiểu các công nghệ mới, đặc biệt là các mô hình
                             trí tuệ nhân tạo (AI), thị giác máy tính và kiến trúc web hiện đại.</p>
                     </div>
 
                     <div class="interest-card">
                         <div class="interest-icon">🎮</div>
-                        <h3 class="interest-title">Gaming & Esports</h3>
-                        <p class="interest-desc">Chơi các tựa game MOBA chiến thuật (Liên Quân Mobile) cùng bạn bè để
+                        <h3 class="interest-title" data-i18n="interest_3_title">Gaming & Esports</h3>
+                        <p class="interest-desc" data-i18n="interest_3_desc">Chơi các tựa game MOBA chiến thuật (Liên Quân Mobile) cùng bạn bè để
                             rèn luyện tinh thần đồng đội và phản xạ nhạy bén.</p>
                     </div>
 
                     <div class="interest-card">
                         <div class="interest-icon">🎬</div>
-                        <h3 class="interest-title">Phim ảnh & Thư giãn</h3>
-                        <p class="interest-desc">Thưởng thức phim điện ảnh và các nội dung sáng tạo để nuôi dưỡng cảm
+                        <h3 class="interest-title" data-i18n="interest_4_title">Phim ảnh & Thư giãn</h3>
+                        <p class="interest-desc" data-i18n="interest_4_desc">Thưởng thức phim điện ảnh và các nội dung sáng tạo để nuôi dưỡng cảm
                             hứng thẩm mỹ và thiết kế.</p>
                     </div>
                 </div>
@@ -532,35 +541,35 @@
         <!-- SECTION 6: AWARDS (GIẢI THƯỞNG) -->
         <section class="resume-section" id="awards">
             <div class="resume-section-content">
-                <div class="cyber-section-tag">ACHIEVEMENTS // HONORS_AND_AWARDS</div>
-                <h2 class="cyber-section-title">Giải thưởng & Chứng nhận</h2>
+                <div class="cyber-section-tag" data-i18n="awards_tag">ACHIEVEMENTS // HONORS_AND_AWARDS</div>
+                <h2 class="cyber-section-title" data-i18n="awards_title">Giải thưởng & Chứng nhận</h2>
 
                 <div class="awards-grid">
                     <div class="award-card">
-                        <span class="award-badge-top"><i class="fas fa-trophy"></i> HỌC BỔNG XUẤT SẮC</span>
-                        <h3 class="award-title">Học bổng Xuất Sắc Kỳ I (Khoa CNTT)</h3>
-                        <p class="award-desc">Đạt học bổng xuất sắc dành cho sinh viên có thành tích học tập và rèn
+                        <span class="award-badge-top"><i class="fas fa-trophy"></i> <span data-i18n="award_1_badge">HỌC BỔNG XUẤT SẮC</span></span>
+                        <h3 class="award-title" data-i18n="award_1_title">Học bổng Xuất Sắc Kỳ I (Khoa CNTT)</h3>
+                        <p class="award-desc" data-i18n="award_1_desc">Đạt học bổng xuất sắc dành cho sinh viên có thành tích học tập và rèn
                             luyện dẫn đầu khoa năm học 2020 - 2021.</p>
                     </div>
 
                     <div class="award-card">
-                        <span class="award-badge-top"><i class="fas fa-star"></i> KHEN THƯỞNG HỌC TẬP</span>
-                        <h3 class="award-title">Sinh viên giỏi phát triển ứng dụng Web</h3>
-                        <p class="award-desc">Ghi nhận năng lực vượt trội trong các đồ án lập trình và thiết kế ứng dụng
+                        <span class="award-badge-top"><i class="fas fa-star"></i> <span data-i18n="award_2_badge">KHEN THƯỞNG HỌC TẬP</span></span>
+                        <h3 class="award-title" data-i18n="award_2_title">Sinh viên giỏi phát triển ứng dụng Web</h3>
+                        <p class="award-desc" data-i18n="award_2_desc">Ghi nhận năng lực vượt trội trong các đồ án lập trình và thiết kế ứng dụng
                             web thực tế.</p>
                     </div>
 
                     <div class="award-card">
-                        <span class="award-badge-top"><i class="fas fa-medal"></i> GIẢI ĐẤU ESPORTS</span>
-                        <h3 class="award-title">Á Quân Giải đấu Liên Quân Khoa</h3>
-                        <p class="award-desc">Giải Nhì chung cuộc giải đấu thể thao điện tử cấp khoa, thể hiện tinh thần
+                        <span class="award-badge-top"><i class="fas fa-medal"></i> <span data-i18n="award_3_badge">GIẢI ĐẤU ESPORTS</span></span>
+                        <h3 class="award-title" data-i18n="award_3_title">Á Quân Giải đấu Liên Quân Khoa</h3>
+                        <p class="award-desc" data-i18n="award_3_desc">Giải Nhì chung cuộc giải đấu thể thao điện tử cấp khoa, thể hiện tinh thần
                             phối hợp đồng đội xuất sắc.</p>
                     </div>
 
                     <div class="award-card">
-                        <span class="award-badge-top"><i class="fas fa-robot"></i> NGHIÊN CỨU KHOA HỌC</span>
-                        <h3 class="award-title">Đề tài NCKH Quản Lý Nhà Trọ AI</h3>
-                        <p class="award-desc">Tham gia nghiên cứu khoa học phát triển hệ thống quản lý nhà trọ sinh viên
+                        <span class="award-badge-top"><i class="fas fa-robot"></i> <span data-i18n="award_4_badge">NGHIÊN CỨU KHOA HỌC</span></span>
+                        <h3 class="award-title" data-i18n="award_4_title">Đề tài NCKH Quản Lý Nhà Trọ AI</h3>
+                        <p class="award-desc" data-i18n="award_4_desc">Tham gia nghiên cứu khoa học phát triển hệ thống quản lý nhà trọ sinh viên
                             tích hợp AI tự động hỗ trợ trả lời tin nhắn.</p>
                     </div>
                 </div>
@@ -572,9 +581,9 @@
         <!-- SECTION 7: BRAND NEW MODERN CONTACT FORM (FORM LIÊN HỆ HIỆN ĐẠI) -->
         <section class="resume-section" id="contact">
             <div class="resume-section-content">
-                <div class="cyber-section-tag">DIRECT_TRANSMISSION // INITIATE_CONTACT</div>
-                <h2 class="cyber-section-title">Liên hệ & Gửi tin nhắn</h2>
-                <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2rem;">
+                <div class="cyber-section-tag" data-i18n="contact_tag">DIRECT_TRANSMISSION // INITIATE_CONTACT</div>
+                <h2 class="cyber-section-title" data-i18n="contact_title">Liên hệ & Gửi tin nhắn</h2>
+                <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2rem;" data-i18n="contact_intro">
                     Bạn đang tìm kiếm một lập trình viên cho dự án mới, muốn tuyển dụng hay trao đổi về công nghệ? Hãy
                     gửi tin nhắn ngay bên dưới hoặc kết nối trực tiếp qua các kênh liên lạc!
                 </p>
@@ -587,7 +596,7 @@
                             <div class="contact-card-left">
                                 <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
                                 <div class="contact-card-info">
-                                    <h4>Địa chỉ Email</h4>
+                                    <h4 data-i18n="contact_email_label">Địa chỉ Email</h4>
                                     <p>
                                         <a href="mailto:ae12cnamcao@gmail.com?subject=Liên%20hệ%20hợp%20tác%20với%20Trọng%20Min" 
                                            class="contact-card-link" title="Nhấp để mở ứng dụng gửi thư">
@@ -614,7 +623,7 @@
                             <div class="contact-card-left">
                                 <div class="contact-card-icon"><i class="fas fa-phone-alt"></i></div>
                                 <div class="contact-card-info">
-                                    <h4>Số điện thoại / Zalo</h4>
+                                    <h4 data-i18n="contact_phone_label">Số điện thoại / Zalo</h4>
                                     <p>
                                         <a href="tel:0347726501" class="contact-card-link" title="Nhấp để quay số ngay">
                                             (+84) 3477-26501
@@ -640,8 +649,8 @@
                             <div class="contact-card-left">
                                 <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
                                 <div class="contact-card-info">
-                                    <h4>Khu vực hoạt động</h4>
-                                    <p>Hà Nội / Hải Dương, Việt Nam</p>
+                                    <h4 data-i18n="contact_location_label">Khu vực hoạt động</h4>
+                                    <p data-i18n="contact_location_val">Hà Nội / Hải Dương, Việt Nam</p>
                                 </div>
                             </div>
                             <span
@@ -654,17 +663,17 @@
                         <div class="contact-status-terminal">
                             <div class="terminal-accent-line">
                                 <i class="fas fa-check-circle"></i>
-                                <span>SYSTEM STATUS: OPERATIONAL</span>
+                                <span data-i18n="sys_status">SYSTEM STATUS: OPERATIONAL</span>
                             </div>
-                            <div>• Thời gian phản hồi trung bình: Dưới 24 giờ.</div>
-                            <div>• Hỗ trợ làm việc từ xa (Remote) hoặc On-site linh hoạt.</div>
-                            <div>• Sẵn sàng tham gia phát triển dự án Web, ASP.NET, và ứng dụng AI.</div>
+                            <div data-i18n="status_line1">• Thời gian phản hồi trung bình: Dưới 24 giờ.</div>
+                            <div data-i18n="status_line2">• Hỗ trợ làm việc từ xa (Remote) hoặc On-site linh hoạt.</div>
+                            <div data-i18n="status_line3">• Sẵn sàng tham gia phát triển dự án Web, ASP.NET, và ứng dụng AI.</div>
                         </div>
 
                         <!-- Social Quick Connect -->
                         <div class="d-flex align-items-center justify-content-between pt-2">
                             <span
-                                style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">MẠNG
+                                style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);" data-i18n="contact_social_label">MẠNG
                                 XÃ HỘI:</span>
                             <div class="social-icons-bar">
                                 <a class="cyber-social-link fb" href="https://www.facebook.com/TrongMin2k2"
@@ -686,31 +695,31 @@
                     <div class="cyber-form-container">
                         <h3 class="form-header-title">
                             <i class="fas fa-terminal" style="color: var(--accent-blue);"></i>
-                            <span>Gửi tin nhắn trực tiếp</span>
+                            <span data-i18n="form_title">Gửi tin nhắn trực tiếp</span>
                         </h3>
-                        <p class="form-header-desc">Điền thông tin vào biểu mẫu, dữ liệu sẽ được truyền trực tiếp đến
+                        <p class="form-header-desc" data-i18n="form_desc">Điền thông tin vào biểu mẫu, dữ liệu sẽ được truyền trực tiếp đến
                             Trọng Min.</p>
 
                         <form id="cyberContactForm" novalidate>
                             <!-- Topic Selector Chips -->
                             <div class="topic-select-group">
-                                <label class="topic-label">Chủ đề liên hệ:</label>
+                                <label class="topic-label" data-i18n="topic_label">Chủ đề liên hệ:</label>
                                 <div class="topic-chips-wrapper">
                                     <label class="topic-chip">
                                         <input type="radio" name="topic" value="Dự án Web" checked>
-                                        <span class="topic-chip-box"><i class="fas fa-laptop-code"></i> Dự án Web</span>
+                                        <span class="topic-chip-box"><i class="fas fa-laptop-code"></i> <span data-i18n="topic_web">Dự án Web</span></span>
                                     </label>
                                     <label class="topic-chip">
                                         <input type="radio" name="topic" value="Tích hợp AI">
-                                        <span class="topic-chip-box"><i class="fas fa-robot"></i> Giải pháp AI</span>
+                                        <span class="topic-chip-box"><i class="fas fa-robot"></i> <span data-i18n="topic_ai">Giải pháp AI</span></span>
                                     </label>
                                     <label class="topic-chip">
                                         <input type="radio" name="topic" value="Tuyển dụng">
-                                        <span class="topic-chip-box"><i class="fas fa-briefcase"></i> Tuyển dụng</span>
+                                        <span class="topic-chip-box"><i class="fas fa-briefcase"></i> <span data-i18n="topic_job">Tuyển dụng</span></span>
                                     </label>
                                     <label class="topic-chip">
                                         <input type="radio" name="topic" value="Giao lưu / Khác">
-                                        <span class="topic-chip-box"><i class="fas fa-coffee"></i> Khác</span>
+                                        <span class="topic-chip-box"><i class="fas fa-coffee"></i> <span data-i18n="topic_other">Khác</span></span>
                                     </label>
                                 </div>
                             </div>
@@ -719,38 +728,37 @@
                             <div class="form-row-2">
                                 <div class="cyber-input-group" id="groupName">
                                     <label class="cyber-input-label" for="contactName">
-                                        Họ và tên <span class="req">*</span>
+                                        <span data-i18n="label_name">Họ và tên</span> <span class="req">*</span>
                                     </label>
                                     <div class="input-with-icon">
                                         <input type="text" class="cyber-input" id="contactName"
-                                            placeholder="Ví dụ: Nguyễn Văn A" required>
+                                            placeholder="Ví dụ: Nguyễn Văn A" data-i18n-placeholder="placeholder_name" required>
                                         <i class="fas fa-user input-icon-left"></i>
                                     </div>
-                                    <span class="input-error-msg">Vui lòng nhập họ và tên của bạn!</span>
+                                    <span class="input-error-msg" data-i18n="err_name">Vui lòng nhập họ và tên của bạn!</span>
                                 </div>
 
                                 <div class="cyber-input-group" id="groupEmail">
                                     <label class="cyber-input-label" for="contactEmail">
-                                        Địa chỉ Email <span class="req">*</span>
+                                        <span data-i18n="label_email">Địa chỉ Email</span> <span class="req">*</span>
                                     </label>
                                     <div class="input-with-icon">
                                         <input type="email" class="cyber-input" id="contactEmail"
-                                            placeholder="your.email@example.com" required>
+                                            placeholder="your.email@example.com" data-i18n-placeholder="placeholder_email" required>
                                         <i class="fas fa-envelope input-icon-left"></i>
                                     </div>
-                                    <span class="input-error-msg">Vui lòng nhập địa chỉ email hợp lệ!</span>
+                                    <span class="input-error-msg" data-i18n="err_email">Vui lòng nhập địa chỉ email hợp lệ!</span>
                                 </div>
                             </div>
 
                             <!-- Phone Row (Optional) -->
                             <div class="cyber-input-group" id="groupPhone">
                                 <label class="cyber-input-label" for="contactPhone">
-                                    Số điện thoại / Zalo <span style="color: var(--text-dim); text-transform:none;">(Tùy
-                                        chọn)</span>
+                                    <span data-i18n="label_phone">Số điện thoại / Zalo</span> <span style="color: var(--text-dim); text-transform:none;" data-i18n="label_optional">(Tùy chọn)</span>
                                 </label>
                                 <div class="input-with-icon">
                                     <input type="tel" class="cyber-input" id="contactPhone"
-                                        placeholder="Ví dụ: 0912 345 678">
+                                        placeholder="Ví dụ: 0912 345 678" data-i18n-placeholder="placeholder_phone">
                                     <i class="fas fa-phone-alt input-icon-left"></i>
                                 </div>
                             </div>
@@ -758,21 +766,21 @@
                             <!-- Message Area -->
                             <div class="cyber-input-group" id="groupMessage">
                                 <label class="cyber-input-label" for="contactMessage">
-                                    Nội dung tin nhắn <span class="req">*</span>
+                                    <span data-i18n="label_message">Nội dung tin nhắn</span> <span class="req">*</span>
                                 </label>
                                 <textarea class="cyber-textarea" id="contactMessage" maxlength="500"
                                     placeholder="Mô tả tóm tắt yêu cầu dự án, cơ hội làm việc hoặc câu hỏi của bạn..."
-                                    required></textarea>
+                                    data-i18n-placeholder="placeholder_message" required></textarea>
                                 <div class="textarea-footer">
-                                    <span id="charCount">0</span>/500 ký tự
+                                    <span id="charCount">0</span>/500 <span data-i18n="char_suffix">ký tự</span>
                                 </div>
-                                <span class="input-error-msg">Vui lòng nhập nội dung tin nhắn ít nhất 5 ký tự!</span>
+                                <span class="input-error-msg" data-i18n="err_message">Vui lòng nhập nội dung tin nhắn ít nhất 5 ký tự!</span>
                             </div>
 
                             <!-- Submit Button -->
                             <button type="submit" class="btn-cyber-submit" id="submitContactBtn">
                                 <i class="fas fa-paper-plane mr-2"></i>
-                                <span>GỬI TIN NHẮN / TRANSMIT</span>
+                                <span data-i18n="btn_submit">GỬI TIN NHẮN / TRANSMIT</span>
                             </button>
                         </form>
                     </div>
@@ -784,6 +792,9 @@
 
     <!-- Floating Cyber HUD (Voice, Shortcuts, Back to top) -->
     <div class="cyber-floating-hud">
+        <button class="hud-btn lang-hud-btn" title="Chuyển sang English (Phím L)" aria-label="Switch Language">
+            <span class="hud-lang-text">VN</span>
+        </button>
         <button class="hud-btn theme-toggle-btn" title="Chuyển đổi tone Xanh Sáng Tươi / Xanh Sáng Neon">
             <i class="fas fa-sun"></i>
         </button>
@@ -803,53 +814,58 @@
         <div class="cyber-modal-card">
             <div class="modal-header-flex">
                 <h3 style="font-size: 1.25rem; margin:0; color: var(--neon-cyan);">
-                    <i class="fas fa-terminal mr-2"></i>PHÍM TẮT ĐIỀU HƯỚNG NHANH
+                    <i class="fas fa-terminal mr-2"></i><span data-i18n="modal_sc_title">PHÍM TẮT ĐIỀU HƯỚNG NHANH</span>
                 </h3>
                 <button class="modal-close-btn" onclick="closeShortcutModal()">&times;</button>
             </div>
 
-            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;" data-i18n="modal_sc_desc">
                 Bạn có thể bấm các phím số hoặc chữ cái sau bất kỳ lúc nào để cuộn nhanh đến mục tương ứng:
             </p>
 
             <div class="shortcut-list">
                 <div class="shortcut-row">
-                    <span>Thông tin cá nhân</span>
-                    <span class="shortcut-key">Phím 1</span>
+                    <span data-i18n="sc_about">Thông tin cá nhân</span>
+                    <span class="shortcut-key" data-i18n="key_1">Phím 1</span>
                 </div>
                 <div class="shortcut-row">
-                    <span>Kinh nghiệm & Dự án</span>
-                    <span class="shortcut-key">Phím 2</span>
+                    <span data-i18n="sc_exp">Kinh nghiệm & Dự án</span>
+                    <span class="shortcut-key" data-i18n="key_2">Phím 2</span>
                 </div>
                 <div class="shortcut-row">
-                    <span>Học vấn & Đào tạo</span>
-                    <span class="shortcut-key">Phím 3</span>
+                    <span data-i18n="sc_edu">Học vấn & Đào tạo</span>
+                    <span class="shortcut-key" data-i18n="key_3">Phím 3</span>
                 </div>
                 <div class="shortcut-row">
-                    <span>Kỹ năng chuyên môn</span>
-                    <span class="shortcut-key">Phím 4</span>
+                    <span data-i18n="sc_skills">Kỹ năng chuyên môn</span>
+                    <span class="shortcut-key" data-i18n="key_4">Phím 4</span>
                 </div>
                 <div class="shortcut-row">
-                    <span>Sở thích cá nhân</span>
-                    <span class="shortcut-key">Phím 5</span>
+                    <span data-i18n="sc_interests">Sở thích cá nhân</span>
+                    <span class="shortcut-key" data-i18n="key_5">Phím 5</span>
                 </div>
                 <div class="shortcut-row">
-                    <span>Giải thưởng & Chứng nhận</span>
-                    <span class="shortcut-key">Phím 6</span>
+                    <span data-i18n="sc_awards">Giải thưởng & Chứng nhận</span>
+                    <span class="shortcut-key" data-i18n="key_6">Phím 6</span>
                 </div>
                 <div class="shortcut-row">
-                    <span style="color: var(--neon-cyan); font-weight: bold;">Form liên hệ hiện đại</span>
+                    <span style="color: var(--neon-cyan); font-weight: bold;" data-i18n="sc_contact">Form liên hệ hiện đại</span>
                     <span class="shortcut-key"
-                        style="border-color: var(--neon-cyan); color: #fff; background: var(--neon-cyan-dim);">Phím 7
+                        style="border-color: var(--neon-cyan); color: #fff; background: var(--neon-cyan-dim);" data-i18n="key_7">Phím 7
                         hoặc C</span>
                 </div>
                 <div class="shortcut-row">
-                    <span>Mở bảng phím tắt này</span>
-                    <span class="shortcut-key">Phím ? hoặc H</span>
+                    <span style="color: var(--accent-blue-light); font-weight: bold;" data-i18n="sc_lang">Chuyển đổi ngôn ngữ VN / EN</span>
+                    <span class="shortcut-key"
+                        style="border-color: var(--accent-blue); color: #fff; background: var(--accent-blue-dim);" data-i18n="key_l">Phím L</span>
+                </div>
+                <div class="shortcut-row">
+                    <span data-i18n="sc_help">Mở bảng phím tắt này</span>
+                    <span class="shortcut-key" data-i18n="key_help">Phím ? hoặc H</span>
                 </div>
             </div>
 
-            <button class="btn-cyber-primary w-100" onclick="closeShortcutModal()" style="padding: 10px;">
+            <button class="btn-cyber-primary w-100" onclick="closeShortcutModal()" style="padding: 10px;" data-i18n="btn_modal_close">
                 ĐÃ HIỂU / ĐÓNG
             </button>
         </div>
@@ -864,7 +880,8 @@
     <!-- Three.js 3D WebGL Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <!-- Interactive Scripts -->
+    <!-- Bilingual i18n Engine & Interactive Scripts -->
+    <script src="js/i18n.js?v=1.0"></script>
     <script src="js/contact.js?v=2.6"></script>
     <script src="js/phimtat.js?v=2.1"></script>
     <script src="js/thognbao.js?v=2.1"></script>

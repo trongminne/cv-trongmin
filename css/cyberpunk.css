@@ -881,6 +881,115 @@ hr.cyber-divider {
 }
 
 /* ==========================================================================
+   BILINGUAL (EN/VN) CYBER LANGUAGE SWITCHER
+   ========================================================================== */
+.sidebar-lang-container {
+  width: 100%;
+}
+
+.cyber-lang-toggle {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: rgba(14, 42, 82, 0.65);
+  border: 1px solid var(--accent-blue-border);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 4px;
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.lang-opt-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.lang-opt-btn .lang-flag {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.lang-opt-btn .lang-code {
+  letter-spacing: 0.5px;
+}
+
+.lang-opt-btn:hover {
+  color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.12);
+}
+
+.lang-opt-btn.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.28) 0%, rgba(14, 165, 233, 0.2) 100%);
+  border-color: var(--accent-cyan);
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(0, 245, 255, 0.35);
+  font-weight: 700;
+}
+
+/* Mobile Language Switcher */
+.cyber-lang-mobile-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(14, 42, 82, 0.85);
+  border: 1px solid var(--accent-blue-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+.cyber-lang-mobile-btn:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+  color: var(--accent-cyan);
+}
+
+/* Light Aqua Theme adjustments */
+[data-theme="light-blue"] .cyber-lang-toggle {
+  background: rgba(224, 242, 254, 0.7);
+  border-color: rgba(2, 132, 199, 0.3);
+}
+
+[data-theme="light-blue"] .lang-opt-btn {
+  color: #0369a1;
+}
+
+[data-theme="light-blue"] .lang-opt-btn.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 3px 12px rgba(2, 132, 199, 0.35);
+}
+
+[data-theme="light-blue"] .cyber-lang-mobile-btn {
+  background: #ffffff;
+  color: #0369a1;
+  border-color: rgba(2, 132, 199, 0.35);
+}
+
+
+/* ==========================================================================
    SECTION 1: ABOUT (THÔNG TIN CÁ NHÂN)
    ========================================================================== */
 .hero-greeting {
@@ -2141,6 +2250,45 @@ hr.cyber-divider {
   transform: translateY(-3px);
   background: var(--accent-blue-dim);
   box-shadow: var(--accent-blue-glow);
+}
+
+.hud-btn.lang-hud-btn {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.hud-btn.lang-hud-btn .hud-lang-text {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--accent-blue);
+  line-height: 1;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.hud-btn.lang-hud-btn:hover .hud-lang-text {
+  color: #ffffff;
+  text-shadow: 0 0 10px var(--accent-blue);
+}
+
+[data-theme="light-blue"] .hud-btn.lang-hud-btn .hud-lang-text {
+  color: #0284c7;
+}
+
+[data-theme="light-blue"] .hud-btn.lang-hud-btn:hover .hud-lang-text {
+  color: #0369a1;
+  text-shadow: none;
 }
 
 .cyber-modal-overlay {

@@ -41,10 +41,13 @@
   
   $(document).ready(function () {
     $(document).keydown(function (event) {
-      // Kiểm tra xem phím Ctrl đã được nhấn cùng lúc
-  
+      // Bỏ qua nếu đang gõ văn bản trong input hoặc textarea
+      if ($(event.target).is("input, textarea, select")) {
+        return;
+      }
+
       var targetId = "";
-      // Kiểm tra phím A - Hồ sơ
+      // Kiểm tra phím 1 - Hồ sơ
       if (event.key === "1") {
         targetId = "about";
       }
@@ -72,13 +75,19 @@
       else if (event.key === "7" || event.key.toLowerCase() === "c") {
         targetId = "contact";
       }
+      // Phím L hoặc l - Chuyển đổi ngôn ngữ VN/EN
+      else if (event.key.toLowerCase() === "l") {
+        if (window.i18n && typeof window.i18n.toggleLanguage === "function") {
+          window.i18n.toggleLanguage();
+        }
+      }
       // Phím ? hoặc h - Bật hướng dẫn phím tắt
       else if (event.key === "?" || event.key.toLowerCase() === "h") {
         if (typeof openShortcutModal === "function") {
           openShortcutModal();
         }
       }
-  
+
       if (targetId !== "") {
         // Cuộn đến phần tương ứng
         var target = $("#" + targetId);
