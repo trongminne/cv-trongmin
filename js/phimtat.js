@@ -68,6 +68,16 @@
       else if (event.key === "6") {
         targetId = "awards";
       }
+      // Kiểm tra phím 7 hoặc c/C - Liên hệ (Form hiện đại)
+      else if (event.key === "7" || event.key.toLowerCase() === "c") {
+        targetId = "contact";
+      }
+      // Phím ? hoặc h - Bật hướng dẫn phím tắt
+      else if (event.key === "?" || event.key.toLowerCase() === "h") {
+        if (typeof openShortcutModal === "function") {
+          openShortcutModal();
+        }
+      }
   
       if (targetId !== "") {
         // Cuộn đến phần tương ứng

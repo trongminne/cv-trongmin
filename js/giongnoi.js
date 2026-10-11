@@ -82,7 +82,14 @@ if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
       } else if (transcript.toLowerCase().includes("giải thưởng")) {
         window.location.href = "#awards";
         animateLink("#awards");
-      } else if (transcript.toLowerCase().includes("7")) {
+      } else if (
+        transcript.toLowerCase().includes("liên hệ") ||
+        transcript.toLowerCase().includes("tin nhắn") ||
+        transcript.toLowerCase().includes("contact")
+      ) {
+        window.location.href = "#contact";
+        animateLink("#contact");
+      } else if (transcript.toLowerCase().includes("facebook")) {
         window.location.href =
           "https://m.facebook.com/profile.php/?id=100023433405773";
       } else if (transcript.toLowerCase().includes("8")) {

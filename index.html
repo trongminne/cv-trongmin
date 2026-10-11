@@ -1,274 +1,925 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <meta property="og:title" content="Trọng Min" />
+    <meta name="description"
+        content="Hồ sơ cá nhân và portfolio của Trọng Min - Kỹ sư phần mềm chuyên về ASP.NET Core, giải pháp tích hợp AI và phát triển web hiện đại. Liên hệ hợp tác ngay!" />
+    <meta name="author" content="Trọng Min" />
+    <meta name="theme-color" content="#080c15" />
+    <meta property="og:title" content="Trọng Min - Software Engineer & AI Solution Developer" />
     <meta property="og:image" content="assets/img/thumbnail.png" />
-    <meta property="og:description" content="Sự hài lòng của bạn về sản phẩm là mục tiêu của tôi!" />
+    <meta property="og:description"
+        content="Sự hài lòng của bạn về sản phẩm là mục tiêu của tôi! Khám phá hồ sơ và liên hệ ngay." />
+    <meta property="og:type" content="website" />
 
-    <title>CV - Trọng Min</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Trọng Min - Software Engineer & AI Developer | CV & Portfolio</title>
 
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet"
-        type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
 
-    <!-- Thư viện Fancybox CSS -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Fancybox CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
 
-    <!-- Thư viện jQuery (yêu cầu cho Fancybox) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Core Theme CSS (Bootstrap Base) -->
+    <link href="css/styles.css?v=2.1" rel="stylesheet" />
 
-    <!-- Thư viện Fancybox JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <!-- Soft Blue Modern Theme Stylesheet -->
+    <link href="css/cyberpunk.css?v=2.5" rel="stylesheet" />
 </head>
 
 <body id="page-top">
-    <a class="" href=""><img class="codepro-trungthu-left"
-            alt="Trang trí đón trung thu cho blog/website bằng hình ảnh cành hoa, mặt trăng, lồng đèn và rước đèn"
-            src="https://1.bp.blogspot.com/-wf9C2NZr5AI/YUlSh0NwnGI/AAAAAAAAIEU/MKzk1C_6QFg9oD6Okg_nqu_W_EDKEsWWgCLcBGAsYHQ/s0/canh-hoa-long-den-trung-thu.png" /></a>
-    <a class="" href=""><img class="codepro-trungthu-right"
-            alt="Trang trí đón trung thu cho blog/website bằng hình ảnh cành hoa, mặt trăng, lồng đèn và rước đèn"
-            src="https://1.bp.blogspot.com/-_FqJ8T-L_m0/YUlSiKRdTBI/AAAAAAAAIEc/8mwpN2bs3VY64RDR8pwZCb5M5EFszN2_gCLcBGAsYHQ/s0/mat-trang-long-den-trung-thu.png" /></a>
-    <a class="" href=""><img class="codepro-trungthu-bottom"
-            alt="Trang trí đón trung thu cho blog/website bằng hình ảnh cành hoa, mặt trăng, lồng đèn và rước đèn"
-            src="https://1.bp.blogspot.com/-VjWrvEVdwa0/YUlSh8T8UII/AAAAAAAAIEY/zr9aSp_zVYcseD9bPabdo6AIMgOioTJZwCLcBGAsYHQ/s0/ruoc-den-trung-thu.png" /></a>
+    <!-- Fullscreen Interactive 3D Three.js WebGL Background -->
+    <canvas id="three-bg-canvas"></canvas>
 
-    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-    <div class="elfsight-app-d2aed5b2-1b68-4a02-bf34-fa35430ece4f" data-elfsight-app-lazy></div>
-    <div id="preloader" class="fullwrapper preloading">
-        <div id="preload" class="preload-container"
-            style="display: table-cell; vertical-align: middle; text-align: center; color: white; font-size: 30px; padding: 50px;">
-            <div class="spinner">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+    <!-- Ambient Background Neon Orbs in Bright Cyan/Blue -->
+    <div class="cyber-orb cyber-orb-1"></div>
+    <div class="cyber-orb cyber-orb-2"></div>
+    <div class="cyber-orb cyber-orb-3"></div>
+
+    <!-- Navigation Sidebar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav">
+        <!-- Mobile Logo -->
+        <a class="navbar-brand js-scroll-trigger d-block d-lg-none font-weight-bold" href="#page-top"
+            style="font-family: var(--font-heading); color: var(--accent-blue);">
+            <i class="fas fa-terminal mr-2"></i>TRỌNG MIN
+        </a>
+
+        <!-- Desktop Sidebar Header (No nested anchor tags) -->
+        <div class="sidebar-header d-none d-lg-block text-center w-100 mb-2">
+            <div class="avatar-container" title="Trọng Min">
+                <img class="avatar-img" src="assets/img/add.jpg" alt="Trọng Min Avatar">
+            </div>
+            <a class="sidebar-profile-name js-scroll-trigger" href="#page-top">Trọng Min</a>
+            <div class="sidebar-profile-sub">&lt;dev.trongmin/&gt;</div>
+            <div class="mt-2">
+                <span class="cyber-status-badge">
+                    <span class="status-dot-pulse"></span> Sẵn sàng nhận dự án
+                </span>
             </div>
         </div>
-    </div>
 
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">
-            <span class="d-block d-lg-none">Trọng Min</span>
-            <span class="d-none d-lg-block"><!-- Hình ảnh -->
-
-                <a data-fancybox="gallery" href="assets/img/add.jpg" class="avatar-container">
-                    <img class="mx-auto mb-2 avatar" src="assets/img/add.jpg" alt=""
-                        style="width: 150px; border-radius: 50% !important; max-width: 10rem; max-height: 10rem; border: 0.5rem solid rgba(255, 255, 255, 0.2); max-width: 100%; height: auto;">
-                </a>
-            </span>
-        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
             <ul class="navbar-nav">
-                <li class="nav-item animated"><a class="nav-link js-scroll-trigger" href="#about">Thông tin cá nhân</a>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#about">
+                        <span class="nav-link-code">[01]</span>
+                        <span>Thông tin cá nhân</span>
+                    </a>
                 </li>
-                <li class="nav-item animated"><a class="nav-link js-scroll-trigger" href="#experience">Kinh nghiệm</a>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#experience">
+                        <span class="nav-link-code">[02]</span>
+                        <span>Kinh nghiệm</span>
+                    </a>
                 </li>
-                <li class="nav-item animated"><a class="nav-link js-scroll-trigger" href="#education">Giáo dục</a></li>
-                <li class="nav-item animated"><a class="nav-link js-scroll-trigger" href="#skills">Kỹ năng</a></li>
-                <li class="nav-item animated"><a class="nav-link js-scroll-trigger" href="#interests">Sở thích</a></li>
-                <li class="nav-item animated"><a class="nav-link js-scroll-trigger" href="#awards">Giải thưởng</a></li>
-
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#education">
+                        <span class="nav-link-code">[03]</span>
+                        <span>Giáo dục</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#skills">
+                        <span class="nav-link-code">[04]</span>
+                        <span>Kỹ năng</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#interests">
+                        <span class="nav-link-code">[05]</span>
+                        <span>Sở thích</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#awards">
+                        <span class="nav-link-code">[06]</span>
+                        <span>Giải thưởng</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#contact">
+                        <span class="nav-link-code" style="color: var(--accent-blue);">[07]</span>
+                        <span>Liên hệ & Gửi tin</span>
+                        <span class="nav-badge-hot">Mới</span>
+                    </a>
+                </li>
             </ul>
+
+            <!-- Sidebar Bottom Panel: Clean & Spacious -->
+            <div class="sidebar-bottom-panel d-none d-lg-flex">
+                <div class="sidebar-utils-grid">
+                    <button class="cyber-util-btn" onclick="showVoiceGuideModal()" title="Xem hướng dẫn giọng nói">
+                        <i class="fas fa-microphone mr-1" style="color: var(--accent-blue);"></i>
+                        <span>Giọng nói</span>
+                    </button>
+                    <button class="cyber-util-btn" onclick="openShortcutModal()" title="Xem phím tắt nhanh">
+                        <i class="fas fa-keyboard mr-1" style="color: var(--accent-blue-light);"></i>
+                        <span>Phím tắt</span>
+                    </button>
+                </div>
+
+                <button class="cyber-util-btn theme-toggle-btn w-100 mt-2" title="Chuyển tone Xanh Sáng Tươi / Xanh Sáng Neon">
+                    <i class="fas fa-sun mr-1"></i>
+                    <span>Tone Xanh Sáng</span>
+                </button>
+
+                <div class="social-icons-bar justify-content-center mt-3">
+                    <a class="cyber-social-link fb" href="https://www.facebook.com/TrongMin2k2" target="_blank"
+                        rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="cyber-social-link gh" href="https://github.com/trongminne" target="_blank"
+                        rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a class="cyber-social-link yt" href="https://www.youtube.com/channel/UCG2AfXQ9zIggntyjNa9_z5w"
+                        target="_blank" rel="noopener noreferrer" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a class="cyber-social-link tt" href="https://www.tiktok.com/@trongmin111" target="_blank"
+                        rel="noopener noreferrer" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
         </div>
     </nav>
-    <!-- Page Content-->
+
+    <!-- Page Main Content -->
     <div class="container-fluid p-0">
-        <!-- About-->
+
+        <!-- SECTION 1: ABOUT (THÔNG TIN CÁ NHÂN) -->
         <section class="resume-section" id="about">
             <div class="resume-section-content">
-                <h1 class="mb-0">
-                    Trọng
-                    <span class="text-primary">Min</span>
-                </h1>
-                <div class="subheading mb-5">
-                    (+84) 3477-26501 ·
-                    <a href="mailto:ae12cnamcao@gmail.com">ae12cnamcao@gmail.com</a>
+                <!-- Hero Two-Column Layout (Intro + Interactive 3D Three.js Core) -->
+                <div class="hero-flex-grid">
+                    <!-- Left Column: Personal Intro -->
+                    <div class="hero-intro-col">
+                        <div class="cyber-section-tag">SYS_INIT // PERSONAL_PROFILE.LOG</div>
+                        <div class="hero-greeting">
+                            <span>&lt;status: online/&gt;</span>
+                            <span>👋 Xin chào, tôi là</span>
+                        </div>
+
+                        <h1 class="hero-title">
+                            Trọng <span class="cyber-gradient-text">Min</span>
+                        </h1>
+
+                        <div class="hero-subtitle">
+                            <span>Kỹ Sư Phần Mềm</span>
+                            <span class="hero-subtitle-dot">✦</span>
+                            <span>ASP.NET Core & Web Developer</span>
+                            <span class="hero-subtitle-dot">✦</span>
+                            <span>AI Solutions</span>
+                        </div>
+
+                        <!-- Social Icons Bar (Prominent & Large) -->
+                        <div class="social-icons-bar hero-social-bar">
+                            <a class="cyber-social-link fb" href="https://www.facebook.com/TrongMin2k2" target="_blank"
+                                rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a class="cyber-social-link gh" href="https://github.com/trongminne" target="_blank"
+                                rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a class="cyber-social-link yt" href="https://www.youtube.com/channel/UCG2AfXQ9zIggntyjNa9_z5w"
+                                target="_blank" rel="noopener noreferrer" title="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a class="cyber-social-link tt" href="https://www.tiktok.com/@trongmin111" target="_blank"
+                                rel="noopener noreferrer" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        </div>
+
+                        <!-- Cyber Terminal Box -->
+                        <div class="cyber-terminal-box mb-0">
+                            <div class="cyber-terminal-header">
+                                <div class="terminal-dots">
+                                    <span class="terminal-dot-red"></span>
+                                    <span class="terminal-dot-yellow"></span>
+                                    <span class="terminal-dot-green"></span>
+                                </div>
+                                <div>bash - trongmin@dev-box: ~/manifesto</div>
+                            </div>
+                            <p class="terminal-bio-text">
+                                "Sự hài lòng của bạn về sản phẩm là mục tiêu của tôi! Tôi đam mê xây dựng các giải pháp web hiệu
+                                năng cao, tích hợp trí tuệ nhân tạo (AI) và kiến trúc ứng dụng an toàn, tin cậy để giải quyết
+                                các bài toán thực tiễn."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive 3D Three.js Hologram Showcase -->
+                    <div class="hero-3d-col">
+                        <div class="hero-3d-card">
+                            <div class="hero-3d-header">
+                                <div class="hero-3d-title">
+                                    <i class="fas fa-cubes"></i>
+                                </div>
+                                <div class="hero-3d-telemetry">
+                                    <span class="telemetry-chip telemetry-chip-pulse" id="three-hud-fps">60 FPS</span>
+                                    <span class="telemetry-chip" id="three-hud-verts">240 VERTS</span>
+                                </div>
+                            </div>
+
+                            <!-- 3D Interactive WebGL Canvas Viewport -->
+                            <div id="three-hero-viewport" title="Kéo giữ chuột để xoay 3D 360°"></div>
+
+                            <div class="hero-3d-hint">
+                                <i class="fas fa-hand-pointer mr-1"></i> Chạm / Kéo chuột để xoay 3D 360° | <span id="three-hud-shape" style="color:var(--accent-cyan); font-weight:bold;">PHA LÊ 3D</span>
+                            </div>
+
+                            <!-- 3D Interactive Control Dashboard -->
+                            <div class="hero-3d-controls">
+                                <div class="hero-3d-shapes-row">
+                                    <button class="btn-3d-shape active" data-three-shape="icosahedron">
+                                        <i class="fas fa-gem mr-1"></i>Pha Lê
+                                    </button>
+                                    <button class="btn-3d-shape" data-three-shape="torusKnot">
+                                        <i class="fas fa-ring mr-1"></i>Knot
+                                    </button>
+                                    <button class="btn-3d-shape" data-three-shape="sphere">
+                                        <i class="fas fa-globe mr-1"></i>Cầu 3D
+                                    </button>
+                                    <button class="btn-3d-shape" data-three-shape="box">
+                                        <i class="fas fa-cube mr-1"></i>Cube
+                                    </button>
+                                </div>
+                                <div class="hero-3d-actions-row">
+                                    <button class="btn-3d-action" id="three-toggle-speed" title="Chuyển đổi tốc độ xoay">
+                                        <i class="fas fa-play"></i> <span>1.0x</span>
+                                    </button>
+                                    <button class="btn-3d-action" id="three-toggle-wireframe" title="Bật/Tắt chế độ khung lưới Wireframe">
+                                        <i class="fas fa-cube"></i> <span>Khối quang</span>
+                                    </button>
+                                    <button class="btn-3d-action" id="three-reset-view" title="Đặt lại góc nhìn ban đầu">
+                                        <i class="fas fa-redo-alt"></i> <span>Reset</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="social-icons">
-                    <a style="background: #0D8AF0;" class="social-icon" href="https://www.facebook.com/TrongMin2k2"><i
-                            class="fab fa-facebook-square"></i></i></a>
-                    <a style="background: #FF0000;" class="social-icon"
-                        href="https://www.youtube.com/channel/UCG2AfXQ9zIggntyjNa9_z5w"><i
-                            class="fab fa-youtube"></i></a>
+                <!-- Stats Bento Grid -->
+                <div class="cyber-stats-grid">
+                    <div class="cyber-stat-card">
+                        <div class="cyber-stat-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="cyber-stat-value">3.45 / 4.0</div>
+                        <div class="cyber-stat-label">ĐH Sao Đỏ (GPA Giỏi)</div>
+                    </div>
+                    <div class="cyber-stat-card">
+                        <div class="cyber-stat-icon"><i class="fas fa-brain"></i></div>
+                        <div class="cyber-stat-value">AI Integration</div>
+                        <div class="cyber-stat-label">Text-to-Image & Chatbot</div>
+                    </div>
+                    <div class="cyber-stat-card">
+                        <div class="cyber-stat-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="cyber-stat-value">ASP.NET Core</div>
+                        <div class="cyber-stat-label">Kiến trúc Web & Bảo mật</div>
+                    </div>
+                    <div class="cyber-stat-card">
+                        <div class="cyber-stat-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="cyber-stat-value">Việt Nam</div>
+                        <div class="cyber-stat-label">Hà Nội / Hải Dương</div>
+                    </div>
+                </div>
 
-                    <a style="background: black;" class="social-icon" href="https://www.tiktok.com/@trongmin14622"><i
-                            class="fab fa-tiktok"></i></a>
-                    <a style="background: black;" class="social-icon" href="https://github.com/trongminne"><i
-                            class="fab fa-github"></i></a>
+                <!-- Hero Action Buttons -->
+                <div class="hero-actions">
+                    <a class="btn-cyber-primary js-scroll-trigger" href="#contact">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>LIÊN HỆ & GỬI TIN NHẮN</span>
+                    </a>
+                    <a class="btn-cyber-secondary js-scroll-trigger" href="#experience">
+                        <i class="fas fa-briefcase"></i>
+                        <span>XEM KINH NGHIỆM</span>
+                    </a>
+                    <button class="btn-cyber-secondary copy-btn" data-copy-text="ae12cnamcao@gmail.com">
+                        <i class="fas fa-copy"></i>
+                        <span>SAO CHÉP EMAIL</span>
+                    </button>
                 </div>
             </div>
         </section>
-        <hr class="m-0" />
-        <!-- Experience-->
+
+        <hr class="cyber-divider" />
+
+        <!-- SECTION 2: EXPERIENCE (KINH NGHIỆM) -->
         <section class="resume-section" id="experience">
             <div class="resume-section-content">
-                <h2 class="mb-5">Kinh nghiệm</h2>
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="flex-grow-1">
-                        <h3 class="mb-0">Triển khai website áp dụng AI</h3>
-                        <div class="subheading mb-3">Tạo ảnh từ văn bản</div>
-                        <p>Phát triển và triển khai website sử dụng trí tuệ nhân tạo (AI) để tạo ảnh từ văn bản mô tả.
-                            Áp dụng chuyên môn về xử lý ngôn ngữ tự nhiên và thị giác máy tính để tạo ra trải nghiệm độc
-                            đáo cho người dùng.</p>
+                <div class="cyber-section-tag">EXEC_PATH // WORK_EXPERIENCE.DAT</div>
+                <h2 class="cyber-section-title">Kinh nghiệm & Dự án thực tế</h2>
+
+                <div class="cyber-timeline">
+                    <!-- Experience 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-node"></div>
+                        <div class="cyber-card">
+                            <div class="card-header-flex">
+                                <h3 class="card-title">Triển khai Website ứng dụng Trí Tuệ Nhân Tạo (AI)</h3>
+                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> 2024 - Hiện
+                                    tại</span>
+                            </div>
+                            <div class="card-role-sub"><i class="fas fa-code mr-1"></i> Dự án Trọng điểm: Tạo ảnh nghệ
+                                thuật từ văn bản (Text-to-Image)</div>
+                            <p class="card-desc">
+                                Nghiên cứu, phát triển và triển khai toàn diện giải pháp website áp dụng trí tuệ nhân
+                                tạo (AI) cho phép người dùng nhập mô tả văn bản để tạo ra hình ảnh chất lượng cao. Ứng
+                                dụng kiến thức chuyên sâu về xử lý ngôn ngữ tự nhiên (NLP) và thị giác máy tính
+                                (Computer Vision) nhằm mang lại trải nghiệm tương tác trực quan và tốc độ xử lý vượt
+                                trội.
+                            </p>
+                            <div class="cyber-tag-list">
+                                <span class="cyber-tag">Trí tuệ nhân tạo (AI)</span>
+                                <span class="cyber-tag">Text-to-Image</span>
+                                <span class="cyber-tag">Python</span>
+                                <span class="cyber-tag">Computer Vision</span>
+                                <span class="cyber-tag">NLP</span>
+                                <span class="cyber-tag">Cloud Deployment</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex-shrink-0"><span class="text-primary">2024 - Hiện tại</span></div>
-                </div>
 
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="flex-grow-1">
-                        <h3 class="mb-0">lập trình website</h3>
-                        <div class="subheading mb-3">Bảo mật</div>
-                        <p>Có kinh nghiệm ASP.NET, ASP.NET CORE MVC tăng cường bảo mật cho phát triển ứng dụng website
-                        </p>
+                    <!-- Experience 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-node"></div>
+                        <div class="cyber-card">
+                            <div class="card-header-flex">
+                                <h3 class="card-title">Lập trình Website & Kiến trúc Bảo mật Nâng cao</h3>
+                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> Tháng 11 -
+                                    2023</span>
+                            </div>
+                            <div class="card-role-sub"><i class="fas fa-shield-alt mr-1"></i> ASP.NET & ASP.NET Core MVC
+                            </div>
+                            <p class="card-desc">
+                                Có kinh nghiệm thực chiến với hệ sinh thái ASP.NET, ASP.NET Core MVC; áp dụng các cơ chế
+                                xác thực, phân quyền chặt chẽ, tối ưu hóa truy vấn cơ sở dữ liệu và triển khai các giải
+                                pháp bảo mật nâng cao nhằm ngăn ngừa các lỗ hổng web phổ biến (CSRF, XSS, SQL
+                                Injection).
+                            </p>
+                            <div class="cyber-tag-list">
+                                <span class="cyber-tag">ASP.NET Core MVC</span>
+                                <span class="cyber-tag">C# .NET</span>
+                                <span class="cyber-tag">SQL Server</span>
+                                <span class="cyber-tag">Web Security</span>
+                                <span class="cyber-tag">Authentication & AuthZ</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex-shrink-0"><span class="text-primary">Tháng 11 - 2023</span></div>
-                </div>
 
-
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="flex-grow-1">
-                        <h3 class="mb-0">Phát triển ứng dụng desktop</h3>
-                        <div class="subheading mb-3">Đa dạng hoá trải nghiệm</div>
-                        <p>Phát triển ứng dụng desktop sử dụng WPF WinForms, kết hợp liên kết tương tác với các trang
-                            web ASP.NET để tạo ra trải nghiệm tích hợp và đa dạng cho người dùng.</p>
+                    <!-- Experience 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-node"></div>
+                        <div class="cyber-card">
+                            <div class="card-header-flex">
+                                <h3 class="card-title">Phát triển ứng dụng Desktop tích hợp Web</h3>
+                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> Tháng 05 -
+                                    2023</span>
+                            </div>
+                            <div class="card-role-sub"><i class="fas fa-desktop mr-1"></i> WPF & Windows Forms</div>
+                            <p class="card-desc">
+                                Thiết kế và lập trình phần mềm Desktop sử dụng công nghệ WPF và Windows Forms. Tích hợp
+                                tương tác đồng bộ dữ liệu hai chiều với các trang web và API ASP.NET, tạo ra trải nghiệm
+                                người dùng liền mạch và giải quyết hiệu quả nhu cầu quản lý doanh nghiệp.
+                            </p>
+                            <div class="cyber-tag-list">
+                                <span class="cyber-tag">WPF (Windows Presentation Foundation)</span>
+                                <span class="cyber-tag">WinForms</span>
+                                <span class="cyber-tag">C#</span>
+                                <span class="cyber-tag">RESTful API Integration</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex-shrink-0"><span class="text-primary">Tháng 5 - 2023</span></div>
                 </div>
-
             </div>
         </section>
-        <hr class="m-0" />
-        <!-- Education-->
+
+        <hr class="cyber-divider" />
+
+        <!-- SECTION 3: EDUCATION (GIÁO DỤC) -->
         <section class="resume-section" id="education">
             <div class="resume-section-content">
-                <h2 class="mb-5">Giáo dục</h2>
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="flex-grow-1">
-                        <h3 class="mb-0">Đại học sao đỏ</h3>
-                        <div class="subheading mb-3">Kỹ sư phần mềm</div>
-                        <div>Chuyên: Phát triển website</div>
-                        <p>Điểm TBTL: 3.45</p>
+                <div class="cyber-section-tag">ACADEMIC // EDUCATION_HISTORY.SYS</div>
+                <h2 class="cyber-section-title">Học vấn & Đào tạo</h2>
+
+                <div class="cyber-timeline">
+                    <!-- Education 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-node"></div>
+                        <div class="cyber-card">
+                            <div class="card-header-flex">
+                                <h3 class="card-title">Trường Đại học Sao Đỏ</h3>
+                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> 2023 - Hiện
+                                    tại</span>
+                            </div>
+                            <div class="card-role-sub"><i class="fas fa-user-graduate mr-1"></i> Chuyên ngành: Kỹ sư
+                                phần mềm (Software Engineering)</div>
+                            <p class="card-desc">
+                                Chuyên sâu về nghiên cứu và phát triển phần mềm, kiến trúc website hiện đại, cơ sở dữ
+                                liệu quan hệ, và ứng dụng trí tuệ nhân tạo. Tích cực tham gia các phong trào nghiên cứu
+                                khoa học cấp trường.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span
+                                    style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-blue);">Điểm
+                                    TBTL (GPA): <b>3.45 / 4.0</b> (Xếp loại Giỏi)</span>
+                                <span
+                                    style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-blue-light);">86.25%</span>
+                            </div>
+                            <div class="cyber-progress-wrapper">
+                                <div class="cyber-progress-bar" style="width: 86.25%;"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex-shrink-0"><span class="text-primary">2023 - Hiện tại</span></div>
-                </div>
-                <div class="d-flex flex-column flex-md-row justify-content-between">
-                    <div class="flex-grow-1">
-                        <h3 class="mb-0">Trường THPT Nam Cao</h3>
-                        <div class="subheading mb-3">Học tốt Toán</div>
-                        <p>Điểm TB môn ~ 7.9</p>
+
+                    <!-- Education 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-node"></div>
+                        <div class="cyber-card">
+                            <div class="card-header-flex">
+                                <h3 class="card-title">Trường THPT Nam Cao</h3>
+                                <span class="cyber-date-badge"><i class="fas fa-calendar-alt"></i> Tốt nghiệp: Tháng 06
+                                    - 2020</span>
+                            </div>
+                            <div class="card-role-sub"><i class="fas fa-square-root-alt mr-1"></i> Khối Khoa học Tự
+                                nhiên & Học tốt Toán</div>
+                            <p class="card-desc">
+                                Nền tảng tư duy toán học và giải quyết vấn đề logic vững chắc. Điểm trung bình các môn
+                                học tự nhiên đạt mức xuất sắc (~ 7.9).
+                            </p>
+                        </div>
                     </div>
-                    <div class="flex-shrink-0"><span class="text-primary">Tháng 6 - 2020</span></div>
                 </div>
             </div>
         </section>
-        <hr class="m-0" />
-        <!-- Skills-->
+
+        <hr class="cyber-divider" />
+
+        <!-- SECTION 4: SKILLS (KỸ NĂNG) -->
         <section class="resume-section" id="skills">
             <div class="resume-section-content">
-                <h2 class="mb-5">Kỹ năng</h2>
-                <div class="subheading mb-3">Ngôn ngữ lập trình & Framework</div>
+                <div class="cyber-section-tag">TECH_STACK // CAPABILITIES_MATRIX</div>
+                <h2 class="cyber-section-title">Kỹ năng chuyên môn</h2>
 
-                <ul class="list-inline dev-icons">
-                    <li class="list-inline-item image_kinang"><img src="./assets/img/django.png" alt=""></li>
-                    <li class="list-inline-item"><img src="./assets/img/asp.png" class="image_asp" alt=""></li>
-                    <li class="list-inline-item"><img src="./assets/img/sql.png" class="image_asp" alt=""></li>
-                    <li class="list-inline-item"><img src="./assets/img/php.png" class="image_php" alt=""></li>
-                </ul>
+                <div class="skills-bento-grid">
+                    <!-- Category 1: Backend & Web Frameworks -->
+                    <div class="skill-category-card">
+                        <div class="skill-category-title">
+                            <i class="fas fa-layer-group" style="color: var(--neon-cyan);"></i>
+                            <span>Backend & Frameworks</span>
+                        </div>
+                        <div class="skill-items-grid">
+                            <div class="skill-item" title="ASP.NET Core Framework">
+                                <img src="./assets/img/asp.png" alt="ASP.NET" class="skill-icon-img">
+                                <span class="skill-name">ASP.NET</span>
+                            </div>
+                            <div class="skill-item" title="Django Python Framework">
+                                <img src="./assets/img/django.png" alt="Django" class="skill-icon-img">
+                                <span class="skill-name">Django</span>
+                            </div>
+                            <div class="skill-item" title="Python Programming">
+                                <img src="./assets/img/python.png" alt="Python" class="skill-icon-img">
+                                <span class="skill-name">Python</span>
+                            </div>
+                            <div class="skill-item" title="SQL Database">
+                                <img src="./assets/img/sql.png" alt="SQL" class="skill-icon-img">
+                                <span class="skill-name">SQL</span>
+                            </div>
+                            <div class="skill-item" title="PHP Web Development">
+                                <img src="./assets/img/php.png" alt="PHP" class="skill-icon-img">
+                                <span class="skill-name">PHP</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="subheading mb-3">IDE lập trình</div>
-                <ul class="list-inline dev-icons">
-                    <li class="list-inline-item"><img src="./assets/img/vscode.png" style="width: 100px; height: 100px;"
-                            alt=""></li>
-                    <li class="list-inline-item"><img src="./assets/img/vs.svg" style="width: 100px; height: 100px;"
-                            alt=""></li>
-                </ul>
+                    <!-- Category 2: IDE & Môi trường phát triển -->
+                    <div class="skill-category-card">
+                        <div class="skill-category-title">
+                            <i class="fas fa-laptop-code" style="color: var(--neon-purple);"></i>
+                            <span>Môi trường & IDE</span>
+                        </div>
+                        <div class="skill-items-grid">
+                            <div class="skill-item" title="Visual Studio Code">
+                                <img src="./assets/img/vscode.png" alt="VS Code" class="skill-icon-img">
+                                <span class="skill-name">VS Code</span>
+                            </div>
+                            <div class="skill-item" title="Visual Studio IDE">
+                                <img src="./assets/img/vs.svg" alt="Visual Studio" class="skill-icon-img">
+                                <span class="skill-name">Visual Studio</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="subheading mb-3">Hỗ trợ</div>
-                <ul class="list-inline dev-icons">
-                    <li class="list-inline-item"><img src="./assets/img/github.png" style="width: 100px; height: 100px;"
-                            alt=""></li>
-                    <li class="list-inline-item"><img src="./assets/img/git.png" style="width: 100px; height: 100px;"
-                            alt=""></li>
-                </ul>
-
-
+                    <!-- Category 3: Version Control & Quản lý mã nguồn -->
+                    <div class="skill-category-card">
+                        <div class="skill-category-title">
+                            <i class="fas fa-code-branch" style="color: var(--neon-green);"></i>
+                            <span>Quản lý mã nguồn & Hỗ trợ</span>
+                        </div>
+                        <div class="skill-items-grid">
+                            <div class="skill-item" title="Git Version Control">
+                                <img src="./assets/img/git.png" alt="Git" class="skill-icon-img">
+                                <span class="skill-name">Git</span>
+                            </div>
+                            <div class="skill-item" title="GitHub Repository">
+                                <img src="./assets/img/github.png" alt="GitHub" class="skill-icon-img">
+                                <span class="skill-name">GitHub</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-        <hr class="m-0" />
-        <!-- Interests-->
+
+        <hr class="cyber-divider" />
+
+        <!-- SECTION 5: INTERESTS (SỞ THÍCH) -->
         <section class="resume-section" id="interests">
             <div class="resume-section-content">
-                <h2 class="mb-5">Sở thích</h2>
-                <p class="fnt-size-gt">Ngoài việc là một nhà phát triển web, tôi thích phần lớn thời gian của mình ngoài
-                    trời: chạy bộ, tập thể dục rèn luyện thể chất.
+                <div class="cyber-section-tag">LIFESTYLE // INTERESTS_AND_ACTIVITIES</div>
+                <h2 class="cyber-section-title">Sở thích cá nhân</h2>
 
-                </p>
-                <p class="mb-0 fnt-size-gt">Khi nào ở nhà tôi đọc tin tức & cập nhật công nghệ mới, chơi game và xem
-                    phim giải
-                    trí.</p>
+                <div class="interests-grid">
+                    <div class="interest-card">
+                        <div class="interest-icon">🏃</div>
+                        <h3 class="interest-title">Thể dục & Chạy bộ</h3>
+                        <p class="interest-desc">Dành thời gian rèn luyện thể chất ngoài trời, chạy bộ để giải tỏa áp
+                            lực và duy trì năng lượng tích cực cho công việc.</p>
+                    </div>
+
+                    <div class="interest-card">
+                        <div class="interest-icon">⚡</div>
+                        <h3 class="interest-title">Đam mê Công nghệ</h3>
+                        <p class="interest-desc">Luôn theo dõi và tìm hiểu các công nghệ mới, đặc biệt là các mô hình
+                            trí tuệ nhân tạo (AI), thị giác máy tính và kiến trúc web hiện đại.</p>
+                    </div>
+
+                    <div class="interest-card">
+                        <div class="interest-icon">🎮</div>
+                        <h3 class="interest-title">Gaming & Esports</h3>
+                        <p class="interest-desc">Chơi các tựa game MOBA chiến thuật (Liên Quân Mobile) cùng bạn bè để
+                            rèn luyện tinh thần đồng đội và phản xạ nhạy bén.</p>
+                    </div>
+
+                    <div class="interest-card">
+                        <div class="interest-icon">🎬</div>
+                        <h3 class="interest-title">Phim ảnh & Thư giãn</h3>
+                        <p class="interest-desc">Thưởng thức phim điện ảnh và các nội dung sáng tạo để nuôi dưỡng cảm
+                            hứng thẩm mỹ và thiết kế.</p>
+                    </div>
+                </div>
             </div>
         </section>
-        <hr class="m-0" />
-        <!-- Awards-->
+
+        <hr class="cyber-divider" />
+
+        <!-- SECTION 6: AWARDS (GIẢI THƯỞNG) -->
         <section class="resume-section" id="awards">
             <div class="resume-section-content">
-                <h2 class="mb-5">Giải thưởng & chứng nhận</h2>
-                <ul class="fa-ul mb-0">
-                    <li class="fnt-size-gt">
-                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                        1
-                        <sup>st</sup>
-                        Học bổng xuất sắc kỳ I khoa năm học 2020 - 2021
-                    </li>
-                    <li class="fnt-size-gt">
-                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                        Sinh viên giỏi phát triển ứng dụng web
-                    </li>
-                    <li class="fnt-size-gt">
-                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                        2
-                        <sup>nd</sup>
-                        Á Quân giải đấu game Liên Quân khoa
-                    </li>
-                    <li class="fnt-size-gt">
-                        <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                        Tham gia nghiên cứu khoa học quản lý nhà trọ sinh viện tích hợp AI hỗ trợ tin nhắn tự động
-                    </li>
-                </ul>
+                <div class="cyber-section-tag">ACHIEVEMENTS // HONORS_AND_AWARDS</div>
+                <h2 class="cyber-section-title">Giải thưởng & Chứng nhận</h2>
+
+                <div class="awards-grid">
+                    <div class="award-card">
+                        <span class="award-badge-top"><i class="fas fa-trophy"></i> HỌC BỔNG XUẤT SẮC</span>
+                        <h3 class="award-title">Học bổng Xuất Sắc Kỳ I (Khoa CNTT)</h3>
+                        <p class="award-desc">Đạt học bổng xuất sắc dành cho sinh viên có thành tích học tập và rèn
+                            luyện dẫn đầu khoa năm học 2020 - 2021.</p>
+                    </div>
+
+                    <div class="award-card">
+                        <span class="award-badge-top"><i class="fas fa-star"></i> KHEN THƯỞNG HỌC TẬP</span>
+                        <h3 class="award-title">Sinh viên giỏi phát triển ứng dụng Web</h3>
+                        <p class="award-desc">Ghi nhận năng lực vượt trội trong các đồ án lập trình và thiết kế ứng dụng
+                            web thực tế.</p>
+                    </div>
+
+                    <div class="award-card">
+                        <span class="award-badge-top"><i class="fas fa-medal"></i> GIẢI ĐẤU ESPORTS</span>
+                        <h3 class="award-title">Á Quân Giải đấu Liên Quân Khoa</h3>
+                        <p class="award-desc">Giải Nhì chung cuộc giải đấu thể thao điện tử cấp khoa, thể hiện tinh thần
+                            phối hợp đồng đội xuất sắc.</p>
+                    </div>
+
+                    <div class="award-card">
+                        <span class="award-badge-top"><i class="fas fa-robot"></i> NGHIÊN CỨU KHOA HỌC</span>
+                        <h3 class="award-title">Đề tài NCKH Quản Lý Nhà Trọ AI</h3>
+                        <p class="award-desc">Tham gia nghiên cứu khoa học phát triển hệ thống quản lý nhà trọ sinh viên
+                            tích hợp AI tự động hỗ trợ trả lời tin nhắn.</p>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <hr class="cyber-divider" />
+
+        <!-- SECTION 7: BRAND NEW MODERN CONTACT FORM (FORM LIÊN HỆ HIỆN ĐẠI) -->
+        <section class="resume-section" id="contact">
+            <div class="resume-section-content">
+                <div class="cyber-section-tag">DIRECT_TRANSMISSION // INITIATE_CONTACT</div>
+                <h2 class="cyber-section-title">Liên hệ & Gửi tin nhắn</h2>
+                <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2rem;">
+                    Bạn đang tìm kiếm một lập trình viên cho dự án mới, muốn tuyển dụng hay trao đổi về công nghệ? Hãy
+                    gửi tin nhắn ngay bên dưới hoặc kết nối trực tiếp qua các kênh liên lạc!
+                </p>
+
+                <div class="contact-layout-grid">
+                    <!-- Left: Direct Contact Information HUD -->
+                    <div class="contact-info-panel">
+                        <!-- Email Card -->
+                        <div class="contact-direct-card">
+                            <div class="contact-card-left">
+                                <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+                                <div class="contact-card-info">
+                                    <h4>Địa chỉ Email</h4>
+                                    <p>
+                                        <a href="mailto:ae12cnamcao@gmail.com?subject=Liên%20hệ%20hợp%20tác%20với%20Trọng%20Min" 
+                                           class="contact-card-link" title="Nhấp để mở ứng dụng gửi thư">
+                                            ae12cnamcao@gmail.com
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="contact-btn-group">
+                                <button type="button" class="copy-btn contact-action-btn" data-copy-text="ae12cnamcao@gmail.com"
+                                    title="Sao chép địa chỉ Email">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <a href="mailto:ae12cnamcao@gmail.com?subject=Liên%20hệ%20hợp%20tác%20với%20Trọng%20Min" 
+                                   class="contact-action-btn contact-mail-btn" 
+                                   title="Gửi Email ngay (Mở ứng dụng Mail và tự động điền địa chỉ người nhận)">
+                                    <i class="fas fa-paper-plane"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Phone Card -->
+                        <div class="contact-direct-card">
+                            <div class="contact-card-left">
+                                <div class="contact-card-icon"><i class="fas fa-phone-alt"></i></div>
+                                <div class="contact-card-info">
+                                    <h4>Số điện thoại / Zalo</h4>
+                                    <p>
+                                        <a href="tel:0347726501" class="contact-card-link" title="Nhấp để quay số ngay">
+                                            (+84) 3477-26501
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="contact-btn-group">
+                                <button type="button" class="copy-btn contact-action-btn" data-copy-text="0347726501" 
+                                    title="Sao chép số điện thoại">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <a href="tel:0347726501" 
+                                   class="contact-action-btn contact-call-btn" 
+                                   title="Gọi điện thoại ngay (Tự động chuyển đến trình quay số)">
+                                    <i class="fas fa-phone-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Location Card -->
+                        <div class="contact-direct-card">
+                            <div class="contact-card-left">
+                                <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="contact-card-info">
+                                    <h4>Khu vực hoạt động</h4>
+                                    <p>Hà Nội / Hải Dương, Việt Nam</p>
+                                </div>
+                            </div>
+                            <span
+                                style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-blue); background: var(--accent-blue-dim); padding: 4px 8px; border-radius: 4px;">
+                                GMT+7
+                            </span>
+                        </div>
+
+                        <!-- Terminal Status Banner -->
+                        <div class="contact-status-terminal">
+                            <div class="terminal-accent-line">
+                                <i class="fas fa-check-circle"></i>
+                                <span>SYSTEM STATUS: OPERATIONAL</span>
+                            </div>
+                            <div>• Thời gian phản hồi trung bình: Dưới 24 giờ.</div>
+                            <div>• Hỗ trợ làm việc từ xa (Remote) hoặc On-site linh hoạt.</div>
+                            <div>• Sẵn sàng tham gia phát triển dự án Web, ASP.NET, và ứng dụng AI.</div>
+                        </div>
+
+                        <!-- Social Quick Connect -->
+                        <div class="d-flex align-items-center justify-content-between pt-2">
+                            <span
+                                style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">MẠNG
+                                XÃ HỘI:</span>
+                            <div class="social-icons-bar">
+                                <a class="cyber-social-link fb" href="https://www.facebook.com/TrongMin2k2"
+                                    target="_blank" rel="noopener noreferrer" title="Facebook"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="cyber-social-link gh" href="https://github.com/trongminne" target="_blank"
+                                    rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                                <a class="cyber-social-link yt"
+                                    href="https://www.youtube.com/channel/UCG2AfXQ9zIggntyjNa9_z5w" target="_blank"
+                                    rel="noopener noreferrer" title="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a class="cyber-social-link tt" href="https://www.tiktok.com/@trongmin111"
+                                    target="_blank" rel="noopener noreferrer" title="TikTok"><i
+                                        class="fab fa-tiktok"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Modern Cyber Contact Form -->
+                    <div class="cyber-form-container">
+                        <h3 class="form-header-title">
+                            <i class="fas fa-terminal" style="color: var(--accent-blue);"></i>
+                            <span>Gửi tin nhắn trực tiếp</span>
+                        </h3>
+                        <p class="form-header-desc">Điền thông tin vào biểu mẫu, dữ liệu sẽ được truyền trực tiếp đến
+                            Trọng Min.</p>
+
+                        <form id="cyberContactForm" novalidate>
+                            <!-- Topic Selector Chips -->
+                            <div class="topic-select-group">
+                                <label class="topic-label">Chủ đề liên hệ:</label>
+                                <div class="topic-chips-wrapper">
+                                    <label class="topic-chip">
+                                        <input type="radio" name="topic" value="Dự án Web" checked>
+                                        <span class="topic-chip-box"><i class="fas fa-laptop-code"></i> Dự án Web</span>
+                                    </label>
+                                    <label class="topic-chip">
+                                        <input type="radio" name="topic" value="Tích hợp AI">
+                                        <span class="topic-chip-box"><i class="fas fa-robot"></i> Giải pháp AI</span>
+                                    </label>
+                                    <label class="topic-chip">
+                                        <input type="radio" name="topic" value="Tuyển dụng">
+                                        <span class="topic-chip-box"><i class="fas fa-briefcase"></i> Tuyển dụng</span>
+                                    </label>
+                                    <label class="topic-chip">
+                                        <input type="radio" name="topic" value="Giao lưu / Khác">
+                                        <span class="topic-chip-box"><i class="fas fa-coffee"></i> Khác</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Name & Email Rows -->
+                            <div class="form-row-2">
+                                <div class="cyber-input-group" id="groupName">
+                                    <label class="cyber-input-label" for="contactName">
+                                        Họ và tên <span class="req">*</span>
+                                    </label>
+                                    <div class="input-with-icon">
+                                        <input type="text" class="cyber-input" id="contactName"
+                                            placeholder="Ví dụ: Nguyễn Văn A" required>
+                                        <i class="fas fa-user input-icon-left"></i>
+                                    </div>
+                                    <span class="input-error-msg">Vui lòng nhập họ và tên của bạn!</span>
+                                </div>
+
+                                <div class="cyber-input-group" id="groupEmail">
+                                    <label class="cyber-input-label" for="contactEmail">
+                                        Địa chỉ Email <span class="req">*</span>
+                                    </label>
+                                    <div class="input-with-icon">
+                                        <input type="email" class="cyber-input" id="contactEmail"
+                                            placeholder="your.email@example.com" required>
+                                        <i class="fas fa-envelope input-icon-left"></i>
+                                    </div>
+                                    <span class="input-error-msg">Vui lòng nhập địa chỉ email hợp lệ!</span>
+                                </div>
+                            </div>
+
+                            <!-- Phone Row (Optional) -->
+                            <div class="cyber-input-group" id="groupPhone">
+                                <label class="cyber-input-label" for="contactPhone">
+                                    Số điện thoại / Zalo <span style="color: var(--text-dim); text-transform:none;">(Tùy
+                                        chọn)</span>
+                                </label>
+                                <div class="input-with-icon">
+                                    <input type="tel" class="cyber-input" id="contactPhone"
+                                        placeholder="Ví dụ: 0912 345 678">
+                                    <i class="fas fa-phone-alt input-icon-left"></i>
+                                </div>
+                            </div>
+
+                            <!-- Message Area -->
+                            <div class="cyber-input-group" id="groupMessage">
+                                <label class="cyber-input-label" for="contactMessage">
+                                    Nội dung tin nhắn <span class="req">*</span>
+                                </label>
+                                <textarea class="cyber-textarea" id="contactMessage" maxlength="500"
+                                    placeholder="Mô tả tóm tắt yêu cầu dự án, cơ hội làm việc hoặc câu hỏi của bạn..."
+                                    required></textarea>
+                                <div class="textarea-footer">
+                                    <span id="charCount">0</span>/500 ký tự
+                                </div>
+                                <span class="input-error-msg">Vui lòng nhập nội dung tin nhắn ít nhất 5 ký tự!</span>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn-cyber-submit" id="submitContactBtn">
+                                <i class="fas fa-paper-plane mr-2"></i>
+                                <span>GỬI TIN NHẮN / TRANSMIT</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Floating Cyber HUD (Voice, Shortcuts, Back to top) -->
+    <div class="cyber-floating-hud">
+        <button class="hud-btn theme-toggle-btn" title="Chuyển đổi tone Xanh Sáng Tươi / Xanh Sáng Neon">
+            <i class="fas fa-sun"></i>
+        </button>
+        <button class="hud-btn" onclick="showVoiceGuideModal()" title="Điều khiển giọng nói & Phím tắt">
+            <i class="fas fa-microphone"></i>
+        </button>
+        <button class="hud-btn" onclick="openShortcutModal()" title="Xem phím tắt nhanh">
+            <i class="fas fa-keyboard"></i>
+        </button>
+        <a class="hud-btn js-scroll-trigger" href="#page-top" title="Lên đầu trang" style="text-decoration:none;">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </div>
+
+    <!-- Shortcut Helper Modal -->
+    <div class="cyber-modal-overlay" id="shortcutModal">
+        <div class="cyber-modal-card">
+            <div class="modal-header-flex">
+                <h3 style="font-size: 1.25rem; margin:0; color: var(--neon-cyan);">
+                    <i class="fas fa-terminal mr-2"></i>PHÍM TẮT ĐIỀU HƯỚNG NHANH
+                </h3>
+                <button class="modal-close-btn" onclick="closeShortcutModal()">&times;</button>
+            </div>
+
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                Bạn có thể bấm các phím số hoặc chữ cái sau bất kỳ lúc nào để cuộn nhanh đến mục tương ứng:
+            </p>
+
+            <div class="shortcut-list">
+                <div class="shortcut-row">
+                    <span>Thông tin cá nhân</span>
+                    <span class="shortcut-key">Phím 1</span>
+                </div>
+                <div class="shortcut-row">
+                    <span>Kinh nghiệm & Dự án</span>
+                    <span class="shortcut-key">Phím 2</span>
+                </div>
+                <div class="shortcut-row">
+                    <span>Học vấn & Đào tạo</span>
+                    <span class="shortcut-key">Phím 3</span>
+                </div>
+                <div class="shortcut-row">
+                    <span>Kỹ năng chuyên môn</span>
+                    <span class="shortcut-key">Phím 4</span>
+                </div>
+                <div class="shortcut-row">
+                    <span>Sở thích cá nhân</span>
+                    <span class="shortcut-key">Phím 5</span>
+                </div>
+                <div class="shortcut-row">
+                    <span>Giải thưởng & Chứng nhận</span>
+                    <span class="shortcut-key">Phím 6</span>
+                </div>
+                <div class="shortcut-row">
+                    <span style="color: var(--neon-cyan); font-weight: bold;">Form liên hệ hiện đại</span>
+                    <span class="shortcut-key"
+                        style="border-color: var(--neon-cyan); color: #fff; background: var(--neon-cyan-dim);">Phím 7
+                        hoặc C</span>
+                </div>
+                <div class="shortcut-row">
+                    <span>Mở bảng phím tắt này</span>
+                    <span class="shortcut-key">Phím ? hoặc H</span>
+                </div>
+            </div>
+
+            <button class="btn-cyber-primary w-100" onclick="closeShortcutModal()" style="padding: 10px;">
+                ĐÃ HIỂU / ĐÓNG
+            </button>
+        </div>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-    <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/phimtat.js"></script>
-    <script src="js/thognbao.js"></script>
-    <script src="js/giongnoi.js"></script>
-    <script src="js/loading.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+    <!-- Three.js 3D WebGL Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Interactive Scripts -->
+    <script src="js/contact.js?v=2.5"></script>
+    <script src="js/phimtat.js?v=2.1"></script>
+    <script src="js/thognbao.js?v=2.1"></script>
+    <script src="js/giongnoi.js?v=2.1"></script>
+    <script src="js/three-scene.js?v=1.0"></script>
 </body>
 
 </html>
