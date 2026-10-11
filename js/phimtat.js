@@ -81,6 +81,12 @@
           window.i18n.toggleLanguage();
         }
       }
+      // Phím R hoặc r - Xem lại hiệu ứng Loading
+      else if (event.key.toLowerCase() === "r" && !event.ctrlKey && !event.altKey && !event.metaKey) {
+        if (typeof window.replayCyberLoader === "function") {
+          window.replayCyberLoader();
+        }
+      }
       // Phím ? hoặc h - Bật hướng dẫn phím tắt
       else if (event.key === "?" || event.key.toLowerCase() === "h") {
         if (typeof openShortcutModal === "function") {

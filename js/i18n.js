@@ -173,6 +173,9 @@
       key_6: "Phím 6",
       key_7: "Phím 7 hoặc C",
       key_l: "Phím L",
+      key_r: "Phím R",
+      sc_replay_loader: "Xem lại hiệu ứng Loading",
+      loader_skip: "BỎ QUA",
       key_help: "Phím ? hoặc H",
       btn_modal_close: "ĐÃ HIỂU / ĐÓNG",
 
@@ -356,6 +359,9 @@
       key_6: "Key 6",
       key_7: "Key 7 or C",
       key_l: "Key L",
+      key_r: "Key R",
+      sc_replay_loader: "Replay Loading Screen",
+      loader_skip: "SKIP",
       key_help: "Key ? or H",
       btn_modal_close: "GOT IT / CLOSE",
 

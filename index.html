@@ -38,10 +38,113 @@
     <link href="css/styles.css?v=2.1" rel="stylesheet" />
 
     <!-- Soft Blue Modern Theme Stylesheet -->
-    <link href="css/cyberpunk.css?v=2.9" rel="stylesheet" />
+    <link href="css/cyberpunk.css?v=3.0" rel="stylesheet" />
+
+    <!-- Critical Preloader Fast-Render Styles (Zero White Flash) -->
+    <style>
+        body.preloader-active { overflow: hidden !important; }
+        #cyber-preloader {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999999;
+            background: radial-gradient(ellipse at 50% 45%, #0d2854 0%, #07172e 60%, #030b17 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
 </head>
 
-<body id="page-top">
+<body id="page-top" class="preloader-active">
+    <!-- Cyberpunk System Boot & Holographic Loading Screen -->
+    <div id="cyber-preloader" class="cyber-preloader" aria-label="Đang tải dữ liệu hồ sơ" role="status">
+        <!-- Ambient Cyber Background Grid & Light Rays -->
+        <div class="loader-bg-grid"></div>
+        <div class="loader-scanlines"></div>
+        <div class="loader-glow-orb loader-orb-1"></div>
+        <div class="loader-glow-orb loader-orb-2"></div>
+
+        <!-- Telemetry Corner HUD Elements -->
+        <div class="loader-hud-corner loader-corner-tl">
+            <span class="corner-bracket">┌</span>
+            <span class="corner-text"><i class="fas fa-terminal"></i> SYS_BOOT // v3.0</span>
+        </div>
+        <div class="loader-hud-corner loader-corner-tr">
+            <span class="corner-text">NODE: HN_VN // AI_CORE</span>
+            <span class="corner-bracket">┐</span>
+        </div>
+        <div class="loader-hud-corner loader-corner-bl">
+            <span class="corner-bracket">└</span>
+            <span class="corner-text">PORTFOLIO // TRỌNG MIN</span>
+        </div>
+        <div class="loader-hud-corner loader-corner-br">
+            <span class="corner-text" id="loader-fps-text">60 FPS // TLS_1.3</span>
+            <span class="corner-bracket">┘</span>
+        </div>
+
+        <!-- Central Holographic Core & Progress Hub -->
+        <div class="loader-core-container">
+            <!-- Rotating Holographic Gyro Rings -->
+            <div class="loader-gyro-wrapper">
+                <div class="loader-ring-outer"></div>
+                <div class="loader-ring-middle"></div>
+                <div class="loader-ring-inner"></div>
+                
+                <!-- Center Hexagon / Cyber Monogram -->
+                <div class="loader-center-badge">
+                    <div class="loader-badge-hex">
+                        <span class="loader-brand-glyph">&lt;TM/&gt;</span>
+                    </div>
+                    <div class="loader-pulse-core"></div>
+                </div>
+            </div>
+
+            <!-- Title & Identity -->
+            <div class="loader-identity">
+                <h1 class="loader-name">TRỌNG MIN</h1>
+                <div class="loader-title-bar">
+                    <span class="loader-role">&lt;SOFTWARE ENGINEER &amp; AI DEVELOPER/&gt;</span>
+                </div>
+            </div>
+
+            <!-- Progress Telemetry & Modern Bar -->
+            <div class="loader-progress-section">
+                <div class="loader-meta-row">
+                    <span class="loader-meta-status" id="loader-status-text">INITIALIZING SYSTEMS...</span>
+                    <span class="loader-meta-percent" id="loader-percent-text">0%</span>
+                </div>
+                
+                <div class="loader-bar-track">
+                    <div class="loader-bar-fill" id="loader-bar-fill" style="width: 0%;">
+                        <span class="loader-bar-laser"></span>
+                    </div>
+                </div>
+
+                <div class="loader-sub-metrics">
+                    <span class="sub-metric-item"><i class="fas fa-microchip"></i> <span id="loader-step-text">MEM: 32MB</span></span>
+                    <span class="sub-metric-item"><i class="fas fa-shield-halved"></i> SECURE PROTOCOL</span>
+                    <span class="sub-metric-item"><i class="fas fa-bolt"></i> STATUS: ACTIVE</span>
+                </div>
+            </div>
+
+            <!-- Interactive Skip Control -->
+            <div class="loader-actions">
+                <button type="button" class="loader-skip-btn" id="loader-skip-btn" title="Bỏ qua màn hình tải (Phím ESC hoặc Space)">
+                    <span data-i18n="loader_skip">BỎ QUA</span>
+                    <kbd>ESC</kbd>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preloader Engine Execution -->
+    <script src="js/loading.js?v=3.0"></script>
+
     <!-- Fullscreen Interactive 3D Three.js WebGL Background -->
     <canvas id="three-bg-canvas"></canvas>
 
@@ -860,9 +963,20 @@
                         style="border-color: var(--accent-blue); color: #fff; background: var(--accent-blue-dim);" data-i18n="key_l">Phím L</span>
                 </div>
                 <div class="shortcut-row">
+                    <span style="color: var(--accent-cyan); font-weight: bold;" data-i18n="sc_replay_loader">Xem lại hiệu ứng Loading</span>
+                    <span class="shortcut-key"
+                        style="border-color: var(--accent-cyan); color: #fff; background: var(--accent-blue-dim);" data-i18n="key_r">Phím R</span>
+                </div>
+                <div class="shortcut-row">
                     <span data-i18n="sc_help">Mở bảng phím tắt này</span>
                     <span class="shortcut-key" data-i18n="key_help">Phím ? hoặc H</span>
                 </div>
+            </div>
+
+            <div class="mb-3">
+                <button type="button" class="btn-cyber-outline w-100" onclick="closeShortcutModal(); window.replayCyberLoader();" style="padding: 8px 12px; font-size: 0.85rem; border-color: var(--accent-cyan); color: var(--accent-cyan);">
+                    <i class="fas fa-play-circle mr-2"></i><span data-i18n="sc_replay_loader">Xem lại hiệu ứng Loading</span> (Phím R)
+                </button>
             </div>
 
             <button class="btn-cyber-primary w-100" onclick="closeShortcutModal()" style="padding: 10px;" data-i18n="btn_modal_close">
