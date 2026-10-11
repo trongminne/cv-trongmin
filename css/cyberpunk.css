@@ -265,6 +265,8 @@ body::before {
   0% { transform: translate(0, 0) scale(1); }
   50% { transform: translate(35px, -25px) scale(1.08); }
   100% { transform: translate(-25px, 35px) scale(0.96); }
+}
+
 /* ==========================================================================
    SPATIAL DEPTH EFFECT (IPHONE) & CENTRIFUGAL TILT (VƯƠNG GIẢ VINH DIỆU)
    ========================================================================== */
@@ -314,18 +316,6 @@ body::before {
 .spatial-depth-card .award-badge-top {
   transform: translateZ(36px) !important;
   transform-style: preserve-3d !important;
-}
-
-/* Avatar 3D Multi-Layer Centrifugal Depth */
-.avatar-container.spatial-depth-card {
-  transform-style: preserve-3d !important;
-  perspective: 1000px !important;
-}
-
-.avatar-container.spatial-depth-card .avatar-img {
-  transform: translateZ(28px) scale(1.04) !important;
-  transform-style: preserve-3d !important;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 @media (hover: hover) {
@@ -462,24 +452,31 @@ h1, h2, h3, h4, h5, h6 {
   box-sizing: border-box !important;
   padding: 0 !important;
   background: var(--bg-sidebar) !important;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+  transform-style: flat !important;
+  transform: none !important;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease !important;
 }
 
 .avatar-container:hover {
-  transform: scale(1.04);
+  transform: scale(1.04) !important;
   border-color: #60a5fa !important;
   box-shadow: 0 0 35px rgba(56, 189, 248, 0.65) !important;
 }
 
-.avatar-container .avatar-img {
-  width: 100% !important;
-  height: 100% !important;
+.avatar-container .avatar-img,
+img.avatar-img {
+  width: 136px !important;
+  height: 136px !important;
+  max-width: 136px !important;
+  max-height: 136px !important;
   border-radius: 50% !important;
   object-fit: cover !important;
   display: block !important;
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
+  pointer-events: none;
+  transform: none !important;
 }
 
 .sidebar-profile-name {

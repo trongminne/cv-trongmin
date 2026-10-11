@@ -192,11 +192,7 @@
         this.instances.push(new DepthCardInstance(el));
       });
 
-      // Special 2.5D Centrifugal Tilt for Avatar
-      const avatar = document.querySelector('.avatar-container');
-      if (avatar) {
-        this.instances.push(new DepthCardInstance(avatar));
-      }
+      // Cards are tracked in instances. Avatar is kept in standard circular frame to prevent clipping break.
 
       // Initialize Gyroscope & Mobile Orientation
       this.initDeviceOrientation();
