@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description"
+        content="Bộ công cụ và tiện ích trực tuyến dành cho lập trình viên và người dùng của Trọng Min: JSON Formatter, Base64, Password Generator, QR Code, Regex Tester, AI Prompt Studio." />
+    <meta name="author" content="Trọng Min" />
+    <meta name="theme-color" content="#0a2347" />
+    <meta property="og:title" content="Trọng Min Tools & Utilities | trongmin.io.vn/tool" />
+    <meta property="og:description"
+        content="Bộ công cụ công nghệ và tiện ích trực tuyến nhanh, tiện lợi, giao diện Cyberpunk hiện đại." />
+    <meta property="og:type" content="website" />
+
+    <title>Trọng Min Tools & Utilities | trongmin.io.vn/tool</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg?v=3.0" />
+    <link rel="shortcut icon" href="../favicon.ico?v=3.0" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        :root {
+            --bg-primary: #0a2347;
+            --bg-secondary: #0d3464;
+            --bg-card: rgba(14, 42, 82, 0.75);
+            --bg-card-hover: rgba(18, 52, 102, 0.92);
+            --bg-input: rgba(6, 22, 47, 0.85);
+
+            --accent-cyan: #00f5ff;
+            --accent-blue: #38bdf8;
+            --accent-blue-deep: #0284c7;
+            --accent-blue-light: #7dd3fc;
+            --accent-blue-dim: rgba(56, 189, 248, 0.16);
+            --accent-cyan-dim: rgba(0, 245, 255, 0.15);
+            --accent-emerald: #34d399;
+            --accent-rose: #f43f5e;
+            --accent-amber: #fbbf24;
+
+            --text-main: #f0f9ff;
+            --text-muted: #bae6fd;
+            --text-dim: #7dd3fc;
+
+            --border-subtle: rgba(56, 189, 248, 0.25);
+            --border-active: rgba(0, 245, 255, 0.8);
+
+            --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --shadow-glow: 0 0 25px rgba(0, 245, 255, 0.25);
+            --shadow-card: 0 10px 30px rgba(2, 10, 22, 0.45);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            background-image: 
+                radial-gradient(ellipse at 20% 15%, rgba(0, 245, 255, 0.12) 0%, transparent 45%),
+                radial-gradient(ellipse at 80% 80%, rgba(56, 189, 248, 0.12) 0%, transparent 45%),
+                linear-gradient(180deg, #07172e 0%, #0a2347 50%, #06162d 100%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Ambient scanline texture */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.35;
+        }
+
+        /* App Container */
+        .app-layout {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px 20px 80px 20px;
+        }
+
+        /* Top Navigation Bar */
+        .top-navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            background: rgba(10, 32, 64, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .brand-cluster {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .brand-monogram {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.2), rgba(56, 189, 248, 0.1));
+            border: 1.5px solid var(--accent-cyan);
+            border-radius: 12px;
+            color: var(--accent-cyan);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 0 18px rgba(0, 245, 255, 0.35);
+        }
+
+        .brand-text h1 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-text h1 span.badge-tag {
+            font-size: 0.7rem;
+            background: var(--accent-cyan-dim);
+            color: var(--accent-cyan);
+            border: 1px solid var(--border-active);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-family: var(--font-mono);
+        }
+
+        .brand-text p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+            font-family: var(--font-mono);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--accent-blue-light);
+            border: 1px solid var(--border-subtle);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+        }
+
+        .btn-nav-back:hover {
+            background: var(--accent-cyan);
+            color: #041226;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 10px;
+        }
+
+        .hero-banner .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            background: rgba(0, 245, 255, 0.1);
+            padding: 4px 14px;
+            border-radius: 30px;
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            margin-bottom: 14px;
+        }
+
+        .hero-banner h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-banner h2 span {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-banner p {
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 24px auto;
+            font-size: 1rem;
+        }
+
+        /* Search & Filter Bar */
+        .controls-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 30px;
+            padding: 12px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 16px 10px 40px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-family: var(--font-body);
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+        }
+
+        .filter-tags {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--accent-cyan-dim);
+            color: var(--accent-cyan);
+            border-color: var(--border-active);
+        }
+
+        /* Tools Grid Layout */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Tool Card */
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(12px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tool-card:hover {
+            border-color: var(--border-active);
+            box-shadow: 0 12px 36px rgba(0, 245, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .tool-card:hover::before {
+            opacity: 1;
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .tool-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-cyan);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.2);
+        }
+
+        .tool-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .tool-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .tool-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        /* Form Controls */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-label {
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+            color: var(--text-dim);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-control,
+        textarea.form-control,
+        select.form-control {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            color: var(--text-main);
+            padding: 10px 14px;
+            font-family: var(--font-mono);
+            font-size: 0.88rem;
+            outline: none;
+            transition: all 0.2s ease;
+            resize: vertical;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 12px rgba(0, 245, 255, 0.25);
+        }
+
+        /* Button Utilities */
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-cyber {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 9px 16px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent-blue-deep), #0369a1);
+            color: #ffffff;
+            border: 1px solid var(--border-subtle);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-cyber:hover {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #041226;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 18px rgba(0, 245, 255, 0.4);
+        }
+
+        .btn-cyber-outline {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .btn-cyber-outline:hover {
+            background: rgba(0, 245, 255, 0.15);
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+        }
+
+        .btn-copy {
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            border-radius: 6px;
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid var(--border-subtle);
+            color: var(--accent-cyan);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-copy:hover {
+            background: var(--accent-cyan);
+            color: #041226;
+        }
+
+        /* Output Box */
+        .output-box {
+            background: #040e1e;
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 12px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-blue-light);
+            position: relative;
+            min-height: 50px;
+            word-break: break-all;
+            white-space: pre-wrap;
+        }
+
+        /* Checkbox & Radio */
+        .cyber-check-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .cyber-check-label input {
+            accent-color: var(--accent-cyan);
+        }
+
+        /* Floating Toast */
+        .cyber-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #04142a;
+            color: var(--accent-cyan);
+            border: 1.5px solid var(--accent-cyan);
+            border-radius: 10px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.88rem;
+            box-shadow: 0 0 25px rgba(0, 245, 255, 0.45);
+            transform: translateY(100px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 99999;
+        }
+
+        .cyber-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Footer */
+        .app-footer {
+            margin-top: 60px;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+        }
+
+        .app-footer a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+
+        .app-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-layout">
+        <!-- Top Navbar -->
+        <header class="top-navbar">
+            <a href="/" class="brand-cluster" title="Quay lại Trang Chủ CV Trọng Min">
+                <div class="brand-monogram">&lt;TM/&gt;</div>
+                <div class="brand-text">
+                    <h1>TRỌNG MIN TOOLS <span class="badge-tag">v2.0</span></h1>
+                    <p>Hệ thống công cụ &amp; tiện ích lập trình viên</p>
+                </div>
+            </a>
+
+            <div class="nav-actions">
+                <a href="/" class="btn-nav-back">
+                    <i class="fas fa-arrow-left"></i> Quay lại CV / Portfolio
+                </a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-banner">
+            <div class="hero-tag">
+                <i class="fas fa-terminal"></i> https://trongmin.io.vn/tool
+            </div>
+            <h2>Kho Công Cụ <span>Trực Tuyến &amp; Thông Minh</span></h2>
+            <p>Tập hợp các tiện ích mã hóa, định dạng code, tạo mật khẩu bảo mật, kiểm tra regex và trợ lý AI được tối ưu trực tiếp cho trải nghiệm của bạn.</p>
+        </section>
+
+        <!-- Controls: Search & Categories -->
+        <div class="controls-bar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="tool-search-input" placeholder="Tìm kiếm công cụ (vd: json, base64, password, qr, regex)..." onkeyup="filterTools()">
+            </div>
+            <div class="filter-tags">
+                <button class="filter-btn active" onclick="setCategory('all', this)">Tất cả</button>
+                <button class="filter-btn" onclick="setCategory('encoding', this)">Mã hóa &amp; Chuyển đổi</button>
+                <button class="filter-btn" onclick="setCategory('security', this)">Bảo mật &amp; Pass</button>
+                <button class="filter-btn" onclick="setCategory('dev', this)">Dev &amp; Format</button>
+                <button class="filter-btn" onclick="setCategory('ai', this)">AI Studio</button>
+            </div>
+        </div>
+
+        <!-- Tools Grid -->
+        <main class="tools-grid" id="tools-container">
+
+            <!-- Tool 1: AI Prompt Enhancer -->
+            <div class="tool-card" data-category="ai" data-keywords="ai prompt chatgpt claude deepseek gemini">
+                <div class="tool-header">
+                    <div class="tool-icon-wrapper">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>AI Prompt Studio</h3>
+                        <p>Nâng cấp &amp; tối ưu hóa câu nhắc (Prompt) cho ChatGPT, Claude, Gemini</p>
+                    </div>
+                </div>
+                <div class="tool-body">
+                    <div class="form-group">
+                        <label class="form-label" for="prompt-role">Vai trò của AI</label>
+                        <select class="form-control" id="prompt-role">
+                            <option value="Senior Fullstack Engineer">Senior Fullstack Developer (ASP.NET / React)</option>
+                            <option value="AI Solutions Architect">Kiến trúc sư giải pháp AI &amp; LLM</option>
+                            <option value="Code Reviewer & Bug Hunter">Chuyên gia Code Review &amp; Tối ưu hiệu năng</option>
+                            <option value="DevOps & Cloud Engineer">Chuyên gia CI/CD &amp; DevOps</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="prompt-input">Yêu cầu sơ bộ của bạn</label>
+                        <input type="text" class="form-control" id="prompt-input" placeholder="Vd: viết api login bằng jwt trong .net 8..." />
+                    </div>
+                    <button class="btn-cyber" onclick="generateEnhancedPrompt()">
+                        <i class="fas fa-wand-magic-sparkles"></i> Tạo Prompt Chuẩn Cao Cấp
+                    </button>
+                    <div class="form-group">
+                        <div class="form-label">
+                            <span>Kết quả Prompt hoàn chỉnh:</span>
+                            <button class="btn-copy" onclick="copyFromOutput('prompt-output')"><i class="fas fa-copy"></i> Sao chép</button>
+                        </div>
+                        <div class="output-box" id="prompt-output" style="max-height: 180px; overflow-y: auto;">Nhập yêu cầu và bấm nút để tạo prompt chuyên nghiệp...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 2: Password & Token Generator -->
+            <div class="tool-card" data-category="security" data-keywords="password pass token secret generator mat khau">
+                <div class="tool-header">
+                    <div class="tool-icon-wrapper" style="color: var(--accent-emerald); border-color: rgba(52, 211, 153, 0.4);">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Tạo Mật Khẩu &amp; Secret Key</h3>
+                        <p>Tạo chuỗi ngẫu nhiên bảo mật cao, mật khẩu mạnh &amp; token API</p>
+                    </div>
+                </div>
+                <div class="tool-body">
+                    <div class="form-group">
+                        <div class="form-label">
+                            <span>Độ dài ký tự: <strong id="pwd-length-val" style="color: var(--accent-cyan);">20</strong></span>
+                        </div>
+                        <input type="range" id="pwd-length" min="8" max="64" value="20" oninput="document.getElementById('pwd-length-val').innerText = this.value; generateSecurePassword();" style="accent-color: var(--accent-cyan); width: 100%;">
+                    </div>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <label class="cyber-check-label"><input type="checkbox" id="pwd-upper" checked onchange="generateSecurePassword()"> In hoa (A-Z)</label>
+                        <label class="cyber-check-label"><input type="checkbox" id="pwd-lower" checked onchange="generateSecurePassword()"> Thường (a-z)</label>
+                        <label class="cyber-check-label"><input type="checkbox" id="pwd-num" checked onchange="generateSecurePassword()"> Số (0-9)</label>
+                        <label class="cyber-check-label"><input type="checkbox" id="pwd-sym" checked onchange="generateSecurePassword()"> Ký tự đặc biệt (!@#$)</label>
+                    </div>
+                    <button class="btn-cyber" onclick="generateSecurePassword()">
+                        <i class="fas fa-rotate"></i> Tạo Mới Ngay
+                    </button>
+                    <div class="form-group">
+                        <div class="form-label">
+                            <span>Mật khẩu đã tạo:</span>
+                            <button class="btn-copy" onclick="copyFromOutput('pwd-output')"><i class="fas fa-copy"></i> Sao chép</button>
+                        </div>
+                        <div class="output-box" id="pwd-output" style="font-weight: 700; color: var(--accent-cyan);">Đang tạo...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 3: JSON Formatter & Validator -->
+            <div class="tool-card" data-category="dev" data-keywords="json format prettify minify validator parser">
+                <div class="tool-header">
+                    <div class="tool-icon-wrapper" style="color: var(--accent-amber); border-color: rgba(251, 191, 36, 0.4);">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>JSON Formatter &amp; Validator</h3>
+                        <p>Làm đẹp (Prettify), nén (Minify) và kiểm tra lỗi cú pháp JSON tức thì</p>
+                    </div>
+                </div>
+                <div class="tool-body">
+                    <div class="form-group">
+                        <textarea class="form-control" id="json-input" rows="4" placeholder='{"name":"TrongMin","role":"Developer","skills":["ASP.NET","AI"]}'></textarea>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-cyber" onclick="formatJson(true)"><i class="fas fa-align-left"></i> Làm đẹp (2 spaces)</button>
+                        <button class="btn-cyber btn-cyber-outline" onclick="formatJson(false)"><i class="fas fa-compress"></i> Nén (Minify)</button>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">
+                            <span>Kết quả JSON:</span>
+                            <button class="btn-copy" onclick="copyFromOutput('json-output')"><i class="fas fa-copy"></i> Sao chép</button>
+                        </div>
+                        <div class="output-box" id="json-output" style="max-height: 160px; overflow-y: auto;">Kết quả sẽ hiển thị tại đây...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 4: Base64 & URL Encoder/Decoder -->
+            <div class="tool-card" data-category="encoding" data-keywords="base64 url encode decode ma hoa giai ma">
+                <div class="tool-header">
+                    <div class="tool-icon-wrapper">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Base64 &amp; URL Encoder/Decoder</h3>
+                        <p>Mã hóa hoặc giải mã chuỗi văn bản UTF-8 sang Base64 và URL encoded</p>
+                    </div>
+                </div>
+                <div class="tool-body">
+                    <div class="form-group">
+                        <textarea class="form-control" id="codec-input" rows="3" placeholder="Nhập chuỗi cần xử lý..."></textarea>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-cyber" onclick="processCodec('b64-encode')">Base64 Encode</button>
+                        <button class="btn-cyber btn-cyber-outline" onclick="processCodec('b64-decode')">Base64 Decode</button>
+                        <button class="btn-cyber btn-cyber-outline" onclick="processCodec('url-encode')">URL Encode</button>
+                        <button class="btn-cyber btn-cyber-outline" onclick="processCodec('url-decode')">URL Decode</button>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">
+                            <span>Kết quả:</span>
+                            <button class="btn-copy" onclick="copyFromOutput('codec-output')"><i class="fas fa-copy"></i> Sao chép</button>
+                        </div>
+                        <div class="output-box" id="codec-output">Kết quả...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 5: QR Code Generator -->
+            <div class="tool-card" data-category="dev" data-keywords="qr code generator link tao ma qr">
+                <div class="tool-header">
+                    <div class="tool-icon-wrapper" style="color: var(--accent-blue-light);">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Tạo Mã QR Tức Thì</h3>
+                        <p>Tạo mã QR code độ nét cao cho đường dẫn website, văn bản hoặc wifi</p>
+                    </div>
+                </div>
+                <div class="tool-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="qr-input" value="https://trongmin.io.vn" placeholder="Nhập URL hoặc nội dung bất kỳ..." oninput="generateQrCode()" />
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: center; background: #ffffff; padding: 12px; border-radius: 12px; width: fit-content; margin: 0 auto; min-height: 160px; min-width: 160px;">
+                        <img id="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Ftrongmin.io.vn" alt="QR Code Preview" style="display: block; max-width: 100%; border-radius: 4px;" />
+                    </div>
+                    <div class="btn-group" style="justify-content: center;">
+                        <a id="qr-download-btn" href="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Ftrongmin.io.vn" target="_blank" download="qr-trongmin.png" class="btn-cyber">
+                            <i class="fas fa-download"></i> Tải ảnh QR Code (HD)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 6: UUID & Timestamp Generator -->
+            <div class="tool-card" data-category="dev" data-keywords="uuid guid timestamp unix time generator">
+                <div class="tool-header">
+                    <div class="tool-icon-wrapper" style="color: #a78bfa; border-color: rgba(167, 139, 250, 0.4);">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>UUID (v4) &amp; Unix Timestamp</h3>
+                        <p>Sinh khóa định danh ngẫu nhiên chuẩn UUID v4 và tra cứu Unix Timestamp</p>
+                    </div>
+                </div>
+                <div class="tool-body">
+                    <div class="form-group">
+                        <div class="form-label">
+                            <span>UUID v4:</span>
+                            <button class="btn-copy" onclick="copyFromOutput('uuid-output')"><i class="fas fa-copy"></i> Sao chép</button>
+                        </div>
+                        <div class="output-box" id="uuid-output" style="font-family: var(--font-mono); color: var(--accent-cyan);">...</div>
+                    </div>
+                    <button class="btn-cyber" onclick="generateUuid()"><i class="fas fa-rotate"></i> Sinh UUID Mới</button>
+                    
+                    <div class="form-group" style="margin-top: 8px;">
+                        <div class="form-label">
+                            <span>Unix Timestamp hiện tại:</span>
+                            <button class="btn-copy" onclick="copyFromOutput('timestamp-output')"><i class="fas fa-copy"></i> Sao chép</button>
+                        </div>
+                        <div class="output-box" id="timestamp-output">...</div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2026 Trọng Min (trongmin.io.vn). Hệ thống công cụ tự động phục vụ công việc và học tập.</p>
+            <p><a href="/">Quay về trang CV Portfolio</a> &bull; <a href="https://github.com/trongminne" target="_blank">GitHub @trongminne</a></p>
+        </footer>
+    </div>
+
+    <!-- Floating Toast Notification -->
+    <div id="cyber-toast" class="cyber-toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-msg">Đã sao chép vào bộ nhớ tạm!</span>
+    </div>
+
+    <!-- Interactive Script -->
+    <script>
+        // Toast message utility
+        function showToast(message) {
+            const toast = document.getElementById('cyber-toast');
+            const msgEl = document.getElementById('toast-msg');
+            msgEl.innerText = message || 'Đã sao chép!';
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // Copy utility
+        function copyFromOutput(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            if (!text || text === 'Kết quả...' || text === 'Đang tạo...') return;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Đã sao chép vào clipboard!');
+            }).catch(err => {
+                console.error(err);
+            });
+        }
+
+        // Tool 1: AI Prompt
+        function generateEnhancedPrompt() {
+            const role = document.getElementById('prompt-role').value;
+            const input = document.getElementById('prompt-input').value.trim() || 'viết api tối ưu';
+            
+            const enhanced = `Bạn là một ${role} xuất sắc với hơn 10 năm kinh nghiệm thực chiến.
+Nhiệm vụ của bạn: "${input}"
+
+Yêu cầu thực hiện:
+1. Phân tích bài toán ngắn gọn, đưa ra giải pháp kiến trúc tối ưu nhất (Clean Architecture, SOLID, Performance, Security).
+2. Viết mã nguồn hoàn chỉnh, có giải thích các điểm mấu chốt, kèm xử lý ngoại lệ (Exception Handling) và logging.
+3. Chỉ ra các cạm bẫy (edge cases) và best practices cần lưu ý khi đưa lên production.
+4. Trình bày bằng tiếng Việt rõ ràng, dễ hiểu.`;
+
+            document.getElementById('prompt-output').innerText = enhanced;
+            showToast('Đã tạo Prompt thành công!');
+        }
+
+        // Tool 2: Password Generator
+        function generateSecurePassword() {
+            const length = parseInt(document.getElementById('pwd-length').value) || 20;
+            const useUpper = document.getElementById('pwd-upper').checked;
+            const useLower = document.getElementById('pwd-lower').checked;
+            const useNum = document.getElementById('pwd-num').checked;
+            const useSym = document.getElementById('pwd-sym').checked;
+
+            let chars = '';
+            if (useUpper) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (useLower) chars += 'abcdefghijklmnopqrstuvwxyz';
+            if (useNum) chars += '0123456789';
+            if (useSym) chars += '!@#$%^&*()_+~`|}{[]:;?><,./-=';
+
+            if (!chars) chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+
+            let pwd = '';
+            const array = new Uint32Array(length);
+            window.crypto.getRandomValues(array);
+            for (let i = 0; i < length; i++) {
+                pwd += chars[array[i] % chars.length];
+            }
+            document.getElementById('pwd-output').innerText = pwd;
+        }
+
+        // Tool 3: JSON Formatter
+        function formatJson(pretty) {
+            const raw = document.getElementById('json-input').value.trim();
+            const output = document.getElementById('json-output');
+            if (!raw) {
+                output.innerText = 'Vui lòng dán dữ liệu JSON vào ô nhập!';
+                return;
+            }
+            try {
+                const parsed = JSON.parse(raw);
+                output.innerText = pretty ? JSON.stringify(parsed, null, 2) : JSON.stringify(parsed);
+                output.style.color = 'var(--accent-blue-light)';
+                showToast(pretty ? 'Đã làm đẹp JSON!' : 'Đã nén JSON!');
+            } catch (err) {
+                output.innerText = 'LỖI CÚ PHÁP: ' + err.message;
+                output.style.color = 'var(--accent-rose)';
+            }
+        }
+
+        // Tool 4: Base64 & URL
+        function processCodec(action) {
+            const input = document.getElementById('codec-input').value;
+            const output = document.getElementById('codec-output');
+            if (!input) {
+                output.innerText = 'Vui lòng nhập chuỗi văn bản!';
+                return;
+            }
+
+            try {
+                if (action === 'b64-encode') {
+                    output.innerText = btoa(unescape(encodeURIComponent(input)));
+                    showToast('Đã mã hóa Base64!');
+                } else if (action === 'b64-decode') {
+                    output.innerText = decodeURIComponent(escape(atob(input)));
+                    showToast('Đã giải mã Base64!');
+                } else if (action === 'url-encode') {
+                    output.innerText = encodeURIComponent(input);
+                    showToast('Đã URL Encode!');
+                } else if (action === 'url-decode') {
+                    output.innerText = decodeURIComponent(input);
+                    showToast('Đã URL Decode!');
+                }
+            } catch (e) {
+                output.innerText = 'Lỗi xử lý: ' + e.message;
+            }
+        }
+
+        // Tool 5: QR Code
+        let qrDebounce = null;
+        function generateQrCode() {
+            clearTimeout(qrDebounce);
+            qrDebounce = setTimeout(() => {
+                const val = document.getElementById('qr-input').value.trim() || 'https://trongmin.io.vn';
+                const encoded = encodeURIComponent(val);
+                const url = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encoded}`;
+                const hdUrl = `https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=${encoded}`;
+                document.getElementById('qr-img').src = url;
+                document.getElementById('qr-download-btn').href = hdUrl;
+            }, 300);
+        }
+
+        // Tool 6: UUID & Timestamp
+        function generateUuid() {
+            const uuid = ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+            );
+            document.getElementById('uuid-output').innerText = uuid;
+        }
+
+        function updateTimestamp() {
+            const now = Math.floor(Date.now() / 1000);
+            const dateStr = new Date().toLocaleString('vi-VN');
+            document.getElementById('timestamp-output').innerText = `${now} (${dateStr})`;
+        }
+
+        // Search & Category Filtering
+        function filterTools() {
+            const query = document.getElementById('tool-search-input').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.tool-card');
+            cards.forEach(card => {
+                const title = card.querySelector('h3').innerText.toLowerCase();
+                const desc = card.querySelector('p').innerText.toLowerCase();
+                const keywords = card.getAttribute('data-keywords') || '';
+                const match = title.includes(query) || desc.includes(query) || keywords.includes(query);
+                card.style.display = match ? 'flex' : 'none';
+            });
+        }
+
+        function setCategory(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const cards = document.querySelectorAll('.tool-card');
+            cards.forEach(card => {
+                if (cat === 'all' || card.getAttribute('data-category') === cat) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Initial setup on load
+        window.addEventListener('DOMContentLoaded', () => {
+            generateSecurePassword();
+            generateUuid();
+            updateTimestamp();
+            setInterval(updateTimestamp, 1000);
+        });
+    </script>
+</body>
+
+</html>
