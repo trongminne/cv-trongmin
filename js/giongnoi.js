@@ -107,6 +107,8 @@ if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
           "https://m.youtube.com/channel/UCG2AfXQ9zIggntyjNa9_z5w";
       } else if (lower.includes("9") || lower.includes("tiktok")) {
         window.location.href = "https://www.tiktok.com/@trongmin12";
+      } else if (lower.includes("tool") || lower.includes("công cụ")) {
+        window.open("https://tool.trongmin.io.vn", "_blank");
       } else if (lower.includes("ai")) {
         window.location.href = "#experience";
       }
