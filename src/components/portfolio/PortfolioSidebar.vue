@@ -177,21 +177,23 @@ const jumpTo = (id: string) => {
       <div class="grid grid-cols-2 gap-2">
         <button
           type="button"
-          class="flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border px-2.5 py-2 text-xs font-medium transition hover:border-cyan-400"
-          :class="isListening ? 'border-rose-400 bg-rose-500/20 text-rose-300' : ''"
-          style="border-color: var(--border-subtle); background: var(--bg-surface); color: var(--text-main)"
+          class="flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border px-2.5 py-2 text-xs font-semibold transition"
+          :class="
+            isListening
+              ? 'border-rose-400 bg-rose-500/20 text-rose-400 shadow-[0_0_14px_rgba(244,63,94,0.3)]'
+              : 'border-emerald-400/40 bg-emerald-400/12 text-emerald-400 hover:border-emerald-400 hover:bg-emerald-400/20'
+          "
           @click="emit('openVoiceGuide')"
         >
-          <Mic class="h-3.5 w-3.5" :class="isListening ? 'animate-pulse text-rose-400' : 'text-cyan-400'" />
+          <Mic class="h-3.5 w-3.5" :class="isListening ? 'animate-pulse' : ''" />
           <span>{{ t('nav_voice') }}</span>
         </button>
         <button
           type="button"
-          class="flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border px-2.5 py-2 text-xs font-medium transition hover:border-cyan-400"
-          style="border-color: var(--border-subtle); background: var(--bg-surface); color: var(--text-main)"
+          class="flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-purple-400/40 bg-purple-500/12 px-2.5 py-2 text-xs font-semibold text-purple-400 transition hover:border-purple-400 hover:bg-purple-500/20"
           @click="emit('openShortcuts')"
         >
-          <Keyboard class="h-3.5 w-3.5 text-sky-400" />
+          <Keyboard class="h-3.5 w-3.5" />
           <span>{{ t('nav_shortcuts') }}</span>
         </button>
       </div>
@@ -222,12 +224,16 @@ const jumpTo = (id: string) => {
 
         <button
           type="button"
-          class="flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border px-2.5 py-1.5 text-xs font-medium transition hover:border-cyan-400"
-          style="border-color: var(--border-subtle); background: var(--bg-surface); color: var(--text-main)"
+          :class="[
+            'flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border px-2.5 py-1.5 text-xs font-semibold transition',
+            isLight
+              ? 'border-indigo-500/40 bg-indigo-500/12 text-indigo-600 hover:border-indigo-500 hover:bg-indigo-500/20'
+              : 'border-amber-400/40 bg-amber-400/12 text-amber-300 hover:border-amber-400 hover:bg-amber-400/20',
+          ]"
           @click="toggleTheme"
         >
-          <Moon v-if="isLight" class="h-3.5 w-3.5 text-sky-600" />
-          <Sun v-else class="h-3.5 w-3.5 text-amber-300" />
+          <Moon v-if="isLight" class="h-3.5 w-3.5" />
+          <Sun v-else class="h-3.5 w-3.5" />
           <span class="truncate">{{ isLight ? 'Neon' : 'Aqua' }}</span>
         </button>
       </div>
