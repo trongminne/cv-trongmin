@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Menu, X, Mic, Keyboard, Sun, Moon, Terminal, Wrench } from 'lucide-vue-next'
+import { Icon } from '@iconify/vue'
+import { Menu, X, Terminal } from 'lucide-vue-next'
 import { navSections } from '@/data/portfolio'
 import { useI18n } from '@/composables/useI18n'
 import { useTheme } from '@/composables/useTheme'
@@ -60,8 +61,7 @@ const jumpTo = (id: string) => {
         @click="toggleTheme"
         :aria-label="isLight ? 'Switch to Neon Blue' : 'Switch to Light Aqua'"
       >
-        <Moon v-if="isLight" class="h-4 w-4" />
-        <Sun v-else class="h-4 w-4" />
+        <Icon :icon="isLight ? 'fluent-emoji:crescent-moon' : 'fluent-emoji:sun'" class="h-4 w-4" />
       </button>
       <button
         type="button"
@@ -162,10 +162,10 @@ const jumpTo = (id: string) => {
 
       <RouterLink
         to="/tool"
-        class="mt-3 flex w-full items-center justify-between rounded-xl border border-amber-400/35 bg-amber-400/10 px-3 py-2.5 text-sm font-semibold text-amber-300 transition hover:border-amber-300 hover:bg-amber-400/20"
+        class="mt-3 flex w-full items-center justify-between rounded-xl border border-amber-400/40 bg-amber-400/12 px-3 py-2.5 text-sm font-semibold text-amber-300 transition hover:border-amber-300 hover:bg-amber-400/20"
       >
         <span class="flex items-center gap-2">
-          <Wrench class="h-4 w-4" />
+          <Icon icon="fluent-emoji:toolbox" class="h-4 w-4" />
           <span>{{ t('nav_tools_hub') }}</span>
         </span>
         <span class="font-mono text-[10px] opacity-85">/tool</span>
@@ -185,7 +185,7 @@ const jumpTo = (id: string) => {
           "
           @click="emit('openVoiceGuide')"
         >
-          <Mic class="h-3.5 w-3.5" :class="isListening ? 'animate-pulse' : ''" />
+          <Icon icon="fluent-emoji:studio-microphone" class="h-4 w-4" :class="isListening ? 'animate-pulse' : ''" />
           <span>{{ t('nav_voice') }}</span>
         </button>
         <button
@@ -193,7 +193,7 @@ const jumpTo = (id: string) => {
           class="flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-purple-400/40 bg-purple-500/12 px-2.5 py-2 text-xs font-semibold text-purple-400 transition hover:border-purple-400 hover:bg-purple-500/20"
           @click="emit('openShortcuts')"
         >
-          <Keyboard class="h-3.5 w-3.5" />
+          <Icon icon="fluent-emoji:keyboard" class="h-4 w-4" />
           <span>{{ t('nav_shortcuts') }}</span>
         </button>
       </div>
@@ -206,19 +206,21 @@ const jumpTo = (id: string) => {
         >
           <button
             type="button"
-            class="cursor-pointer rounded-lg py-1.5 font-mono text-xs font-bold transition"
+            class="flex cursor-pointer items-center justify-center gap-1 rounded-lg py-1.5 font-mono text-xs font-bold transition"
             :class="lang === 'vi' ? 'bg-cyan-400 text-slate-950 shadow' : 'opacity-70 hover:opacity-100'"
             @click="setLanguage('vi')"
           >
-            VN
+            <Icon icon="circle-flags:vn" class="h-3.5 w-3.5" />
+            <span>VN</span>
           </button>
           <button
             type="button"
-            class="cursor-pointer rounded-lg py-1.5 font-mono text-xs font-bold transition"
+            class="flex cursor-pointer items-center justify-center gap-1 rounded-lg py-1.5 font-mono text-xs font-bold transition"
             :class="lang === 'en' ? 'bg-cyan-400 text-slate-950 shadow' : 'opacity-70 hover:opacity-100'"
             @click="setLanguage('en')"
           >
-            EN
+            <Icon icon="circle-flags:us" class="h-3.5 w-3.5" />
+            <span>EN</span>
           </button>
         </div>
 
@@ -232,8 +234,7 @@ const jumpTo = (id: string) => {
           ]"
           @click="toggleTheme"
         >
-          <Moon v-if="isLight" class="h-3.5 w-3.5" />
-          <Sun v-else class="h-3.5 w-3.5" />
+          <Icon :icon="isLight ? 'fluent-emoji:crescent-moon' : 'fluent-emoji:sun'" class="h-4 w-4" />
           <span class="truncate">{{ isLight ? 'Neon' : 'Aqua' }}</span>
         </button>
       </div>
