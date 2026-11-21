@@ -1,0 +1,269 @@
+@import "tailwindcss";
+
+@layer base {
+  :root,
+  [data-theme="luminous-cyan"] {
+    --bg-primary: #06142c;
+    --bg-secondary: #0a2347;
+    --bg-surface: rgba(12, 36, 74, 0.72);
+    --bg-surface-strong: rgba(14, 42, 82, 0.9);
+    --bg-surface-hover: rgba(20, 56, 108, 0.92);
+    --bg-sidebar: rgba(7, 23, 49, 0.92);
+    --bg-input: rgba(5, 17, 38, 0.85);
+
+    --accent-cyan: #00f5ff;
+    --accent-blue: #38bdf8;
+    --accent-blue-deep: #0284c7;
+    --accent-blue-light: #7dd3fc;
+    --accent-blue-dim: rgba(56, 189, 248, 0.18);
+    --accent-cyan-dim: rgba(0, 245, 255, 0.14);
+    --accent-emerald: #34d399;
+    --accent-amber: #fbbf24;
+    --accent-rose: #f43f5e;
+    --accent-purple: #a78bfa;
+
+    --text-main: #f0f9ff;
+    --text-muted: #bae6fd;
+    --text-dim: #7dd3fc;
+
+    --border-subtle: rgba(56, 189, 248, 0.22);
+    --border-active: rgba(0, 245, 255, 0.78);
+    --shadow-card: 0 12px 36px rgba(2, 10, 24, 0.48);
+    --shadow-glow: 0 0 28px rgba(0, 245, 255, 0.25);
+
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  [data-theme="light-blue"] {
+    --bg-primary: #edf7ff;
+    --bg-secondary: #dff0fe;
+    --bg-surface: rgba(255, 255, 255, 0.84);
+    --bg-surface-strong: rgba(255, 255, 255, 0.95);
+    --bg-surface-hover: #ffffff;
+    --bg-sidebar: rgba(232, 244, 254, 0.94);
+    --bg-input: rgba(240, 249, 255, 0.95);
+
+    --accent-cyan: #0284c7;
+    --accent-blue: #0284c7;
+    --accent-blue-deep: #0369a1;
+    --accent-blue-light: #0ea5e9;
+    --accent-blue-dim: rgba(2, 132, 199, 0.12);
+    --accent-cyan-dim: rgba(2, 132, 199, 0.12);
+    --accent-emerald: #059669;
+    --accent-amber: #d97706;
+    --accent-rose: #e11d48;
+    --accent-purple: #7c3aed;
+
+    --text-main: #0c4a6e;
+    --text-muted: #0369a1;
+    --text-dim: #0284c7;
+
+    --border-subtle: rgba(2, 132, 199, 0.22);
+    --border-active: rgba(2, 132, 199, 0.85);
+    --shadow-card: 0 10px 30px rgba(2, 132, 199, 0.12);
+    --shadow-glow: 0 4px 24px rgba(2, 132, 199, 0.22);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-body);
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    overflow-x: hidden;
+    transition: background-color 0.35s ease, color 0.35s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  code, pre, kbd, .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Ambient Cyber Grid Overlay */
+.cyber-grid-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    linear-gradient(to right, rgba(56, 189, 248, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.055) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+[data-theme="light-blue"] .cyber-grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(2, 132, 199, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(2, 132, 199, 0.07) 1px, transparent 1px);
+}
+
+/* Ambient Glowing Orbs */
+.cyber-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(130px);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.45;
+  animation: orbFloat 36s ease-in-out infinite alternate;
+}
+
+.cyber-orb-1 {
+  width: 540px;
+  height: 540px;
+  background: radial-gradient(circle, rgba(0, 245, 255, 0.32), transparent 70%);
+  top: -120px;
+  right: -120px;
+}
+
+.cyber-orb-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.28), transparent 70%);
+  bottom: -140px;
+  left: -120px;
+  animation-delay: -10s;
+}
+
+.cyber-orb-3 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.22), transparent 70%);
+  top: 42%;
+  left: 48%;
+  animation-delay: -20s;
+}
+
+@keyframes orbFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(28px, -24px) scale(1.06); }
+  100% { transform: translate(-22px, 20px) scale(0.96); }
+}
+
+/* Glassmorphism Surface Card */
+.cyber-glass {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.cyber-glass:hover {
+  border-color: var(--border-active);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+
+/* Gradient Text */
+.cyber-gradient-text {
+  background: linear-gradient(135deg, #00f5ff 0%, #38bdf8 50%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="light-blue"] .cyber-gradient-text {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 55%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Spatial Depth Tilt Card */
+.spatial-depth-card {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+  overflow: hidden;
+}
+
+.depth-specular-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 20;
+  border-radius: inherit;
+}
+
+/* Cyber Section Divider */
+.cyber-divider {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--border-active), transparent);
+  opacity: 0.35;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
+
+/* Preloader Gyro Rings */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spinReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 9s linear infinite;
+}
+
+.animate-spin-reverse {
+  animation: spinReverse 6s linear infinite;
+}
+
+/* Vue Transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
