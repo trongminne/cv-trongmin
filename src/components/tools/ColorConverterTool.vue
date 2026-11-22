@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { Palette, Copy } from 'lucide-vue-next'
+import { Copy, Sparkles } from 'lucide-vue-next'
 import { useToast } from '@/composables/useToast'
 
 const emit = defineEmits<{ log: [text: string] }>()
@@ -8,18 +8,47 @@ const { copyText } = useToast()
 
 const hex = ref('#00f5ff')
 
-const converted = computed(() => {
-  const clean = hex.value.replace('#', '').trim()
-  if (clean.length !== 6) {
-    return { rgb: 'Invalid HEX', hsl: 'Invalid HEX', valid: false }
+const presets = [
+  '#00f5ff',
+  '#38bdf8',
+  '#6366f1',
+  '#a855f7',
+  '#ec4899',
+  '#f43f5e',
+  '#f59e0b',
+  '#10b981',
+]
+
+function hexToRgb(h: string): { r: number; g: number; b: number } | null {
+  const clean = h.replace('#', '').trim()
+  if (!/^[0-9a-fA-F]{6}$/.test(clean)) return null
+  return {
+    r: parseInt(clean.substring(0, 2), 16),
+    g: parseInt(clean.substring(2, 4), 16),
+    b: parseInt(clean.substring(4, 6), 16),
   }
-  const r = parseInt(clean.substring(0, 2), 16)
-  const g = parseInt(clean.substring(2, 4), 16)
-  const b = parseInt(clean.substring(4, 6), 16)
-  if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b)) {
-    return { rgb: 'Invalid HEX', hsl: 'Invalid HEX', valid: false }
+}
+
+function rgbToHex(r: number, g: number, b: number): string {
+  const toHex = (n: number) => Math.max(0, Math.min(255, Math.round(n))).toString(16).padStart(2, '0')
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`
+}
+
+const converted = computed(() => {
+  const rgb = hexToRgb(hex.value)
+  if (!rgb) {
+    return {
+      valid: false,
+      hex: hex.value,
+      rgb: 'Invalid HEX',
+      hsl: 'Invalid HEX',
+      cssVar: '--brand-color: #00f5ff;',
+      bestTextColor: '#000000',
+      shades: [] as string[],
+    }
   }
 
+  const { r, g, b } = rgb
   const rN = r / 255
   const gN = g / 255
   const bN = b / 255
@@ -36,78 +65,131 @@ const converted = computed(() => {
     else h = (rN - gN) / d + 4
     h /= 6
   }
+
+  // Relative luminance for contrast recommendation
+  const luminance = 0.299 * r + 0.587 * g + 0.114 * b
+  const bestTextColor = luminance > 155 ? '#06142c' : '#ffffff'
+
+  // Generate 9 shades/tints
+  const factors = [0.75, 0.5, 0.25, 0.1, 0, -0.15, -0.35, -0.55, -0.72]
+  const shades = factors.map((f) => {
+    if (f >= 0) {
+      return rgbToHex(r + (255 - r) * f, g + (255 - g) * f, b + (255 - b) * f)
+    }
+    const mult = 1 + f
+    return rgbToHex(r * mult, g * mult, b * mult)
+  })
+
   return {
+    valid: true,
+    hex: hex.value.toUpperCase(),
     rgb: `rgb(${r}, ${g}, ${b})`,
     hsl: `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`,
-    valid: true,
+    cssVar: `background: linear-gradient(135deg, ${hex.value}, ${shades[6]});`,
+    bestTextColor,
+    shades,
   }
 })
+
+const copyFormat = (value: string, label: string) => {
+  copyText(value, `Đã sao chép ${label}: ${value}`)
+  emit('log', `Sao chép mã màu ${label}`)
+}
 </script>
 
 <template>
-  <div class="cyber-glass flex flex-col rounded-2xl p-5">
-    <div class="mb-4 flex items-start gap-3">
-      <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-sky-400/35 bg-sky-400/15 text-sky-400">
-        <Palette class="h-5 w-5" />
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
+    <!-- Left Color Picker & Swatch Preview -->
+    <div class="cyber-glass space-y-5 rounded-2xl p-6 lg:col-span-5">
+      <div
+        class="flex h-44 w-full flex-col items-center justify-center rounded-2xl border shadow-lg transition-colors duration-200"
+        :style="{
+          backgroundColor: converted.valid ? hex : '#0f172a',
+          color: converted.bestTextColor,
+          borderColor: 'var(--border-subtle)',
+        }"
+      >
+        <span class="font-heading text-3xl font-extrabold tracking-wider">{{ converted.hex }}</span>
+        <span class="mt-1 font-mono text-xs opacity-85">
+          Chữ tương phản tốt nhất: {{ converted.bestTextColor === '#ffffff' ? 'Trắng (#FFF)' : 'Tối (#06142C)' }}
+        </span>
       </div>
-      <div>
-        <h3 class="font-heading text-base font-bold">Bảng Màu & Chuyển Đổi CSS</h3>
-        <p class="text-xs" style="color: var(--text-muted)">Chuyển đổi nhanh mã màu HEX sang RGB, HSL kèm xem trước</p>
-      </div>
-    </div>
 
-    <div class="flex flex-1 flex-col gap-3">
-      <div class="flex items-center gap-2.5">
-        <input v-model="hex" type="color" class="h-10 w-12 cursor-pointer rounded-lg border-0 bg-transparent" />
+      <div class="flex items-center gap-3">
+        <input v-model="hex" type="color" class="h-12 w-16 cursor-pointer rounded-xl border-0 bg-transparent" />
         <input
           v-model="hex"
           type="text"
-          class="flex-1 rounded-xl border px-3 py-2 font-mono text-xs outline-none focus:border-cyan-400"
+          placeholder="#00f5ff"
+          class="flex-1 rounded-xl border px-4 py-3 font-mono text-sm font-bold uppercase outline-none focus:border-cyan-400"
           style="background: var(--bg-input); border-color: var(--border-subtle); color: var(--text-main)"
-        />
-        <div
-          class="h-10 w-12 rounded-xl border shadow-inner"
-          :style="{ backgroundColor: converted.valid ? hex : 'transparent', borderColor: 'var(--border-subtle)' }"
         />
       </div>
 
       <div>
-        <div class="mb-1 flex items-center justify-between text-xs">
-          <span style="color: var(--text-dim)">Định dạng RGB:</span>
+        <div class="mb-2 flex items-center gap-1.5 text-xs font-semibold" style="color: var(--text-dim)">
+          <Sparkles class="h-3.5 w-3.5 text-cyan-400" /> Bảng màu gợi ý Cyber:
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button
+            v-for="c in presets"
+            :key="c"
+            type="button"
+            class="h-8 w-8 cursor-pointer rounded-lg border-2 transition hover:scale-110"
+            :style="{ backgroundColor: c, borderColor: hex.toLowerCase() === c ? '#ffffff' : 'transparent' }"
+            :title="c"
+            @click="hex = c"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Formats & Shades Palette -->
+    <div class="cyber-glass space-y-5 rounded-2xl p-6 lg:col-span-7">
+      <div class="space-y-3">
+        <div
+          v-for="row in [
+            { label: 'HEX', val: converted.hex },
+            { label: 'RGB', val: converted.rgb },
+            { label: 'HSL', val: converted.hsl },
+            { label: 'CSS Gradient', val: converted.cssVar },
+          ]"
+          :key="row.label"
+          class="flex items-center justify-between gap-3 rounded-xl border px-4 py-3"
+          style="border-color: var(--border-subtle); background: var(--bg-input)"
+        >
+          <div class="min-w-0">
+            <div class="font-mono text-[10px] font-bold uppercase" style="color: var(--text-dim)">{{ row.label }}</div>
+            <div class="truncate font-mono text-sm font-semibold" style="color: var(--text-main)">{{ row.val }}</div>
+          </div>
           <button
             type="button"
-            class="inline-flex cursor-pointer items-center gap-1 rounded-lg border px-2 py-0.5 text-[11px] hover:border-cyan-400"
-            style="border-color: var(--border-subtle); color: var(--accent-cyan)"
-            @click="copyText(converted.rgb, 'Đã sao chép RGB!'); emit('log', 'Sao chép màu RGB')"
+            class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold text-cyan-400 transition hover:border-cyan-400 hover:bg-cyan-400/10"
+            style="border-color: var(--border-subtle)"
+            @click="copyFormat(row.val, row.label)"
           >
-            <Copy class="h-3 w-3" /> Sao chép
+            <Copy class="h-3.5 w-3.5" /> Sao chép
           </button>
-        </div>
-        <div
-          class="rounded-xl border p-2.5 font-mono text-xs"
-          style="background: var(--bg-input); border-color: var(--border-subtle)"
-        >
-          {{ converted.rgb }}
         </div>
       </div>
 
-      <div class="mt-auto">
-        <div class="mb-1 flex items-center justify-between text-xs">
-          <span style="color: var(--text-dim)">Định dạng HSL:</span>
-          <button
-            type="button"
-            class="inline-flex cursor-pointer items-center gap-1 rounded-lg border px-2 py-0.5 text-[11px] hover:border-cyan-400"
-            style="border-color: var(--border-subtle); color: var(--accent-cyan)"
-            @click="copyText(converted.hsl, 'Đã sao chép HSL!'); emit('log', 'Sao chép màu HSL')"
-          >
-            <Copy class="h-3 w-3" /> Sao chép
-          </button>
+      <!-- Auto Generated Shades & Tints -->
+      <div v-if="converted.shades.length > 0">
+        <div class="mb-2.5 text-xs font-semibold uppercase tracking-wider" style="color: var(--text-dim)">
+          Dải sắc độ tự động (Tints & Shades — Bấm để sao chép)
         </div>
-        <div
-          class="rounded-xl border p-2.5 font-mono text-xs"
-          style="background: var(--bg-input); border-color: var(--border-subtle)"
-        >
-          {{ converted.hsl }}
+        <div class="grid grid-cols-3 gap-2 sm:grid-cols-9">
+          <button
+            v-for="(shade, idx) in converted.shades"
+            :key="idx"
+            type="button"
+            class="group flex cursor-pointer flex-col items-center gap-1.5 rounded-xl border p-1.5 transition hover:-translate-y-1 hover:border-cyan-400"
+            style="border-color: var(--border-subtle); background: var(--bg-input)"
+            @click="copyFormat(shade.toUpperCase(), 'Shade HEX')"
+          >
+            <span class="h-10 w-full rounded-lg shadow-inner" :style="{ backgroundColor: shade }" />
+            <span class="font-mono text-[10px] opacity-85 group-hover:text-cyan-400">{{ shade.toUpperCase() }}</span>
+          </button>
         </div>
       </div>
     </div>

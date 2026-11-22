@@ -160,6 +160,14 @@ onMounted(() => {
       targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2
     }
 
+    const onGyroTilt = (e: Event) => {
+      const detail = (e as CustomEvent<{ x: number; y: number }>).detail
+      if (detail) {
+        targetMouseX = detail.x * 1.6
+        targetMouseY = detail.y * 1.6
+      }
+    }
+
     const onScroll = () => {
       scrollY = window.scrollY
     }
@@ -176,12 +184,14 @@ onMounted(() => {
     }
 
     window.addEventListener('mousemove', onMouseMove, { passive: true })
+    window.addEventListener('spatialGyroTilt', onGyroTilt, { passive: true })
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onResize)
     document.addEventListener('visibilitychange', onVisibility)
 
     cleanupListeners = () => {
       window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('spatialGyroTilt', onGyroTilt)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onResize)
       document.removeEventListener('visibilitychange', onVisibility)

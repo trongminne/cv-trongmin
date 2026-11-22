@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { getToolBySlug } from '@/data/tools'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,7 +17,15 @@ const router = createRouter({
       name: 'tools',
       component: () => import('@/views/ToolsView.vue'),
       meta: {
-        title: 'Trọng Min Tools & Utilities | trongmin.io.vn/tool',
+        title: 'Trọng Min Dev Tools Hub | trongmin.io.vn/tool',
+      },
+    },
+    {
+      path: '/tool/:slug',
+      name: 'tool-detail',
+      component: () => import('@/views/ToolDetailView.vue'),
+      meta: {
+        title: 'Trọng Min Tool | trongmin.io.vn/tool',
       },
     },
     {
@@ -34,6 +43,13 @@ const router = createRouter({
 })
 
 router.afterEach((to) => {
+  if (to.name === 'tool-detail' && typeof to.params.slug === 'string') {
+    const tool = getToolBySlug(to.params.slug)
+    if (tool) {
+      document.title = `${tool.name} | Trọng Min Tools`
+      return
+    }
+  }
   if (to.meta?.title) {
     document.title = String(to.meta.title)
   }
