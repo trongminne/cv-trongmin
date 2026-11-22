@@ -4,6 +4,7 @@ import { useI18n } from '@/composables/useI18n'
 import { useToast } from '@/composables/useToast'
 import { contactInfo } from '@/data/portfolio'
 import SocialIcons from '@/components/common/SocialIcons.vue'
+import Hero3DCore from '@/components/portfolio/Hero3DCore.vue'
 
 const { t } = useI18n()
 const { copyText } = useToast()
@@ -15,51 +16,61 @@ const scrollTo = (id: string) => {
 
 <template>
   <section id="about" class="flex min-h-screen flex-col justify-center py-20 lg:py-24">
-    <div class="mb-4 font-mono text-xs font-semibold tracking-widest uppercase" style="color: var(--accent-cyan)">
-      {{ t('hero_tag') }}
-    </div>
-
-    <div class="mb-2 flex flex-wrap items-center gap-2.5 text-sm font-medium" style="color: var(--text-muted)">
-      <span class="rounded-md bg-emerald-400/15 px-2.5 py-0.5 font-mono text-xs text-emerald-400">&lt;status: online/&gt;</span>
-      <span>👋 {{ t('hero_greeting') }}</span>
-    </div>
-
-    <h1 class="font-heading text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
-      Trọng <span class="cyber-gradient-text">Min</span>
-    </h1>
-
-    <div class="mt-4 flex flex-wrap items-center gap-2 text-base font-medium sm:text-lg" style="color: var(--text-muted)">
-      <span>{{ t('hero_role1') }}</span>
-      <span style="color: var(--accent-cyan)">✦</span>
-      <span>{{ t('hero_role2') }}</span>
-      <span style="color: var(--accent-cyan)">✦</span>
-      <span>{{ t('hero_role3') }}</span>
-    </div>
-
-    <div class="mt-6">
-      <SocialIcons />
-    </div>
-
-    <!-- Cyber Terminal Manifesto -->
-    <div v-spatial-tilt class="cyber-glass mt-8 max-w-3xl overflow-hidden rounded-2xl">
-      <div
-        class="flex items-center justify-between border-b px-4 py-2.5 font-mono text-xs"
-        style="border-color: var(--border-subtle); color: var(--text-dim)"
-      >
-        <div class="flex items-center gap-1.5">
-          <span class="h-2.5 w-2.5 rounded-full bg-rose-400" />
-          <span class="h-2.5 w-2.5 rounded-full bg-amber-400" />
-          <span class="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+    <!-- Hero 2-Column Layout: Left Intro + Right Interactive 3D Hologram -->
+    <div class="grid grid-cols-1 items-center gap-8 xl:grid-cols-12">
+      <div class="xl:col-span-7">
+        <div class="mb-4 font-mono text-xs font-semibold tracking-widest uppercase" style="color: var(--accent-cyan)">
+          {{ t('hero_tag') }}
         </div>
-        <span>bash — trongmin@dev-box: ~/manifesto</span>
+
+        <div class="mb-2 flex flex-wrap items-center gap-2.5 text-sm font-medium" style="color: var(--text-muted)">
+          <span class="rounded-md bg-emerald-400/15 px-2.5 py-0.5 font-mono text-xs text-emerald-400">&lt;status: online/&gt;</span>
+          <span>👋 {{ t('hero_greeting') }}</span>
+        </div>
+
+        <h1 class="font-heading text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
+          Trọng <span class="cyber-gradient-text">Min</span>
+        </h1>
+
+        <div class="mt-4 flex flex-wrap items-center gap-2 text-base font-medium sm:text-lg" style="color: var(--text-muted)">
+          <span>{{ t('hero_role1') }}</span>
+          <span style="color: var(--accent-cyan)">✦</span>
+          <span>{{ t('hero_role2') }}</span>
+          <span style="color: var(--accent-cyan)">✦</span>
+          <span>{{ t('hero_role3') }}</span>
+        </div>
+
+        <div class="mt-6">
+          <SocialIcons />
+        </div>
+
+        <!-- Cyber Terminal Manifesto -->
+        <div v-spatial-tilt class="cyber-glass mt-7 overflow-hidden rounded-2xl">
+          <div
+            class="flex items-center justify-between border-b px-4 py-2.5 font-mono text-xs"
+            style="border-color: var(--border-subtle); color: var(--text-dim)"
+          >
+            <div class="flex items-center gap-1.5">
+              <span class="h-2.5 w-2.5 rounded-full bg-rose-400" />
+              <span class="h-2.5 w-2.5 rounded-full bg-amber-400" />
+              <span class="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+            </div>
+            <span>bash — trongmin@dev-box: ~/manifesto</span>
+          </div>
+          <p class="p-5 font-mono text-sm leading-relaxed sm:p-6 sm:text-[15px]" style="color: var(--text-main)">
+            {{ t('hero_bio') }}
+          </p>
+        </div>
       </div>
-      <p class="p-5 font-mono text-sm leading-relaxed sm:p-6 sm:text-[15px]" style="color: var(--text-main)">
-        {{ t('hero_bio') }}
-      </p>
+
+      <!-- Right Column: Interactive 3D Hologram Core -->
+      <div class="xl:col-span-5">
+        <Hero3DCore />
+      </div>
     </div>
 
     <!-- Stats Bento Grid -->
-    <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div v-reveal="80" class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       <div v-spatial-tilt class="cyber-glass rounded-2xl p-5">
         <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400/15 text-cyan-400">
           <GraduationCap class="h-5 w-5" />
@@ -94,7 +105,7 @@ const scrollTo = (id: string) => {
     </div>
 
     <!-- Action Buttons -->
-    <div class="mt-8 flex flex-wrap items-center gap-3">
+    <div v-reveal="140" class="mt-8 flex flex-wrap items-center gap-3">
       <button
         type="button"
         class="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-400 px-5 py-3 text-xs font-bold tracking-wider text-slate-950 shadow-[0_0_24px_rgba(0,245,255,0.35)] transition hover:-translate-y-0.5 hover:brightness-110"

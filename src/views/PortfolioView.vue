@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import CyberPreloader from '@/components/common/CyberPreloader.vue'
+import CommandPalette from '@/components/common/CommandPalette.vue'
 import PortfolioSidebar from '@/components/portfolio/PortfolioSidebar.vue'
 import HeroSection from '@/components/portfolio/HeroSection.vue'
 import ExperienceSection from '@/components/portfolio/ExperienceSection.vue'
+import GitHubShowcase from '@/components/portfolio/GitHubShowcase.vue'
 import EducationSection from '@/components/portfolio/EducationSection.vue'
 import SkillsSection from '@/components/portfolio/SkillsSection.vue'
 import InterestsSection from '@/components/portfolio/InterestsSection.vue'
@@ -23,6 +25,7 @@ const preloaderRef = ref<InstanceType<typeof CyberPreloader> | null>(null)
 const activeSection = ref('about')
 const isShortcutOpen = ref(false)
 const isVoiceOpen = ref(false)
+const isPaletteOpen = ref(false)
 
 let observer: IntersectionObserver | null = null
 
@@ -31,8 +34,15 @@ const jumpTo = (id: string) => {
 }
 
 const handleKeydown = (e: KeyboardEvent) => {
+  // Global Ctrl+K / Cmd+K Command Palette
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault()
+    isPaletteOpen.value = !isPaletteOpen.value
+    return
+  }
+
   if (['INPUT', 'TEXTAREA', 'SELECT'].includes((e.target as HTMLElement)?.tagName)) return
-  if (e.ctrlKey || e.metaKey || e.altKey) return
+  if (e.ctrlKey || e.metaKey || e.altKey || isPaletteOpen.value) return
 
   const keyMap: Record<string, string> = {
     '1': 'about',
@@ -57,6 +67,7 @@ const handleKeydown = (e: KeyboardEvent) => {
   } else if (e.key === 'Escape') {
     isShortcutOpen.value = false
     isVoiceOpen.value = false
+    isPaletteOpen.value = false
   }
 }
 
@@ -97,23 +108,26 @@ onUnmounted(() => {
     :active-section="activeSection"
     @open-shortcuts="isShortcutOpen = true"
     @open-voice-guide="isVoiceOpen = true"
+    @open-command-palette="isPaletteOpen = true"
   />
 
   <main class="px-5 pt-16 sm:px-8 lg:ml-[285px] lg:px-14 lg:pt-0">
     <div class="mx-auto max-w-5xl">
       <HeroSection />
       <hr class="cyber-divider" />
-      <ExperienceSection />
+      <div v-reveal><ExperienceSection /></div>
       <hr class="cyber-divider" />
-      <EducationSection />
+      <GitHubShowcase />
       <hr class="cyber-divider" />
-      <SkillsSection />
+      <div v-reveal><EducationSection /></div>
       <hr class="cyber-divider" />
-      <InterestsSection />
+      <div v-reveal><SkillsSection /></div>
       <hr class="cyber-divider" />
-      <AwardsSection />
+      <div v-reveal><InterestsSection /></div>
       <hr class="cyber-divider" />
-      <ContactSection />
+      <div v-reveal><AwardsSection /></div>
+      <hr class="cyber-divider" />
+      <div v-reveal><ContactSection /></div>
 
       <footer class="border-t py-8 text-center font-mono text-xs" style="border-color: var(--border-subtle); color: var(--text-dim)">
         &copy; {{ new Date().getFullYear() }} Trọng Min (trongmin.io.vn) • Built with Vue 3 + TypeScript + Vite + Three.js
@@ -122,6 +136,13 @@ onUnmounted(() => {
   </main>
 
   <FloatingHud @open-shortcuts="isShortcutOpen = true" @open-voice-guide="isVoiceOpen = true" />
+
+  <CommandPalette
+    :open="isPaletteOpen"
+    @close="isPaletteOpen = false"
+    @replay-loader="preloaderRef?.replay()"
+    @open-voice="isVoiceOpen = true"
+  />
 
   <ShortcutModal
     :open="isShortcutOpen"

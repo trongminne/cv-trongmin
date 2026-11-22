@@ -78,7 +78,7 @@ const selectTopic = (val: string) => {
   playBeep(950, 'sine', 0.04)
 }
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   errors.name = !form.name.trim()
   errors.email = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())
   errors.message = form.message.trim().length < 5
@@ -95,9 +95,29 @@ const handleSubmit = () => {
   const submittedName = form.name.trim()
   const submittedEmail = form.email.trim()
   const submittedTopic = form.topic
+  const submittedPhone = form.phone.trim()
+  const submittedMessage = form.message.trim()
 
-  setTimeout(() => {
-    isSubmitting.value = false
+  try {
+    const res = await fetch(`https://formsubmit.co/ajax/${contactInfo.email}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        _subject: `[Portfolio trongmin.io.vn] ${submittedTopic} - ${submittedName}`,
+        _template: 'table',
+        name: submittedName,
+        email: submittedEmail,
+        phone: submittedPhone || 'Không cung cấp',
+        topic: submittedTopic,
+        message: submittedMessage,
+      }),
+    })
+
+    if (!res.ok) throw new Error('Network error')
+
     playSuccess()
     form.message = ''
     localStorage.removeItem('cv_contact_message')
@@ -107,7 +127,20 @@ const handleSubmit = () => {
       email: submittedEmail,
       topic: submittedTopic,
     }
-  }, 900)
+  } catch {
+    showToast(
+      lang.value === 'en'
+        ? 'Could not reach mail relay. Opening your mail app instead...'
+        : 'Không thể kết nối máy chủ gửi thư. Đang mở ứng dụng Mail...',
+      '⚠️',
+    )
+    const mailto = `mailto:${contactInfo.email}?subject=${encodeURIComponent(`[${submittedTopic}] ${submittedName}`)}&body=${encodeURIComponent(
+      `Họ tên: ${submittedName}\nEmail: ${submittedEmail}\nSĐT: ${submittedPhone}\n\nNội dung:\n${submittedMessage}`,
+    )}`
+    window.location.href = mailto
+  } finally {
+    isSubmitting.value = false
+  }
 }
 </script>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
-import { Menu, X, Terminal } from 'lucide-vue-next'
+import { Menu, X, Terminal, Search } from 'lucide-vue-next'
 import { navSections } from '@/data/portfolio'
 import { useI18n } from '@/composables/useI18n'
 import { useTheme } from '@/composables/useTheme'
@@ -15,6 +15,7 @@ defineProps<{
 const emit = defineEmits<{
   openShortcuts: []
   openVoiceGuide: []
+  openCommandPalette: []
 }>()
 
 const { lang, t, setLanguage, toggleLanguage } = useI18n()
@@ -125,6 +126,22 @@ const jumpTo = (id: string) => {
         <span class="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
         <span>{{ t('nav_status') }}</span>
       </div>
+
+      <!-- Command Palette Quick Trigger -->
+      <button
+        type="button"
+        class="mt-3 flex w-full cursor-pointer items-center justify-between rounded-xl border px-3 py-2 text-xs transition hover:border-cyan-400"
+        style="border-color: var(--border-subtle); background: var(--bg-input); color: var(--text-dim)"
+        @click="mobileOpen = false; emit('openCommandPalette')"
+      >
+        <span class="flex items-center gap-2">
+          <Search class="h-3.5 w-3.5 text-cyan-400" />
+          <span>{{ lang === 'en' ? 'Quick Command...' : 'Tìm lệnh nhanh...' }}</span>
+        </span>
+        <kbd class="rounded border px-1.5 py-0.5 font-mono text-[10px]" style="border-color: var(--border-subtle); color: var(--accent-cyan)">
+          Ctrl K
+        </kbd>
+      </button>
     </div>
 
     <!-- Navigation Links -->
